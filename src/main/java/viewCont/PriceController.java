@@ -202,7 +202,7 @@ public class PriceController extends JFrame
 				viewProductsData[x][y] = "" + local.getInt("bc2");
 				y++;
 				double cost = local.getDouble("BaseCost") + local.getDouble("CostAdjustment");
-				viewProductsData[x][y] = "£" + cost;
+				viewProductsData[x][y] = "â‚¬" + cost;
 				x++;
 				y = 0;
 			}
@@ -231,11 +231,11 @@ public class PriceController extends JFrame
 			{
 				viewAllSalesData[x][y] = "" + local.getString("Name");
 				y++;
-				viewAllSalesData[x][y] = "£" + local.getDouble("ShopCost");
+				viewAllSalesData[x][y] = "â‚¬" + local.getDouble("ShopCost");
 				y++;
 				viewAllSalesData[x][y] = local.getInt("sale") + "%";
 				y++;
-				viewAllSalesData[x][y] = "" + "£" + local.getDouble("saleCost");
+				viewAllSalesData[x][y] = "" + "â‚¬" + local.getDouble("saleCost");
 				x++;
 				y = 0;
 			}
