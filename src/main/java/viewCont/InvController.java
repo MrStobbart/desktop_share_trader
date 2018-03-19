@@ -1,11 +1,10 @@
 package viewCont;
 import java.sql.ResultSet;
-import java.util.*;
 
 import javax.swing.JOptionPane;
 
 import model.ExternalConnect;
-import model.InternalConnect;
+import model.DbConnector;
 
 /**
  *  Class:         InvController
@@ -17,7 +16,7 @@ public class InvController
 {
 
 	private ExternalConnect ex = new ExternalConnect();
-	private InternalConnect ic = new InternalConnect();
+	private DbConnector ic = new DbConnector();
 	/**
 	*  Method:         start
 	*

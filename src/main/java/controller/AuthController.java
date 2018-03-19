@@ -1,5 +1,6 @@
 package controller;
 
+import enums.AuthActions;
 import model.AuthModel;
 import viewCont.AuthView;
 
@@ -24,9 +25,16 @@ public class AuthController implements ActionListener {
                 + " button is clicked at " + new java.util.Date(e.getWhen())
                 + " with e.paramString " + e.paramString());
 
+        username = authView.getAuthUsername();
+        password = authView.getAuthPassword();
+
+        if(e.getActionCommand() == AuthActions.login.name()){
+            authModel.login(username, password);
+        }else{
+            authModel.signUp(username, password);
+        }
 
     }
-
 
     public void addView(AuthView authView){
         this.authView = authView;

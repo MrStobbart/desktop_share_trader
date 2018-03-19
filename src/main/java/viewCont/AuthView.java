@@ -28,18 +28,25 @@ public class AuthView implements Observer {
         frame.setVisible(true);
     }
 
-    public void addLoginListener(ActionListener actionListener) {
+    public void addListener(ActionListener actionListener) {
         buttonLogin.setActionCommand(AuthActions.login.name());
         buttonLogin.addActionListener(actionListener);
-    }
 
-    public void addSignUpListener(ActionListener signUpListener) {
         buttonSignUp.setActionCommand(AuthActions.signUp.name());
-        buttonSignUp.addActionListener(signUpListener);
+        buttonSignUp.addActionListener(actionListener);
     }
 
     public void update(Observable observable, Object object) {
         System.out.println("View      : Observable is " + observable.getClass() + ", object passed is " + object.getClass());
+    }
+
+    public String getAuthUsername(){
+        return textFieldUsername.getText();
+    }
+
+    // This is not best security practice and only ok for the prototype
+    public String getAuthPassword(){
+        return new String(passwordFieldPassword.getPassword());
     }
 
     {

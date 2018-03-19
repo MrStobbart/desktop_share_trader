@@ -1,19 +1,12 @@
 package viewCont;
-import java.awt.Dimension;
-import java.awt.Rectangle;
+import model.DbConnector;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-
-
-import model.InternalConnect;
+import java.sql.ResultSet;
+import java.sql.SQLException;
  
 /**
  *  Class:         DelivController
@@ -23,7 +16,7 @@ import model.InternalConnect;
  */		
 public class DelivController 
 {
-	private InternalConnect ic = new InternalConnect();
+	private DbConnector ic = new DbConnector();
 	private JButton b1 = new JButton("Check");;
 	private JTextField jt1 = new JTextField("Please Enter Customer ID");
 	private JFrame view = new JFrame();	

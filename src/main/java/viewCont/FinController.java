@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 
-import model.InternalConnect;
+import model.DbConnector;
 
 /** 
  *  Class:         FinController
@@ -22,7 +22,7 @@ import model.InternalConnect;
  */		
 public class FinController 
 {
-	private InternalConnect ic = new InternalConnect();
+	private DbConnector ic = new DbConnector();
 	private JButton b1 = new JButton("Update");;
 	private JTextField jt1 = new JTextField("Please Enter Customer ID");
 	private JTextField jt2 = new JTextField("Please enter True or False");

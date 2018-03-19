@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import model.InternalConnect;
+import model.DbConnector;
 /**
  *  Class:         PriceController
  *
@@ -13,7 +13,7 @@ import model.InternalConnect;
  */		
 public class PriceController extends JFrame 
 {
-	private InternalConnect ic = new InternalConnect();
+	private DbConnector ic = new DbConnector();
 	private JButton b1 = new JButton("Products");;
 	private JButton b2 = new JButton("Sale's");
 	private JButton b3 = new JButton("Amend Product");

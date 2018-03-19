@@ -20,8 +20,7 @@ public class MainController {
         authController.addView(authView);
         authController.addModel(authModel);
 
-        authView.addLoginListener(authController);
-        authView.addSignUpListener(authController);
+        authView.addListener(authController);
 
     }
 }

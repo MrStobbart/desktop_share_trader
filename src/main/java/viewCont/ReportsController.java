@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import model.InternalConnect;
+import model.DbConnector;
 
 /**
  *  Class:         ReportsController
@@ -21,7 +21,7 @@ import model.InternalConnect;
  */		
 public class ReportsController 
 {
-	private InternalConnect ic = new InternalConnect();
+	private DbConnector ic = new DbConnector();
 	private JButton b1 = new JButton("Report 1");;
 	private JButton b2 = new JButton("Report 2");
 	private JButton b3 = new JButton("Report 3");
