@@ -12,7 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-public class AuthenticationView implements Observer {
+public class AuthView implements Observer {
     private JTextField textFieldUsername;
     private JPasswordField passwordFieldPassword;
     private JButton buttonLogin;
@@ -20,8 +20,8 @@ public class AuthenticationView implements Observer {
     private JPanel PanelAuthentication;
 
 
-    public AuthenticationView() {
-        JFrame frame = new JFrame("AuthenticationView");
+    public AuthView() {
+        JFrame frame = new JFrame("AuthView");
         frame.setContentPane(PanelAuthentication);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -34,6 +34,7 @@ public class AuthenticationView implements Observer {
     }
 
     public void addSignUpListener(ActionListener signUpListener) {
+        buttonSignUp.setActionCommand(AuthActions.signUp.name());
         buttonSignUp.addActionListener(signUpListener);
     }
 

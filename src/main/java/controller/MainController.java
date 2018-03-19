@@ -1,7 +1,7 @@
 package controller;
 
-import model.AuthenticationModel;
-import viewCont.AuthenticationView;
+import model.AuthModel;
+import viewCont.AuthView;
 
 public class MainController {
 
@@ -11,17 +11,17 @@ public class MainController {
 
     private void initAuthentication(){
 
-        AuthenticationController authenticationController = new AuthenticationController();
-        AuthenticationView authenticationView = new AuthenticationView();
-        AuthenticationModel authenticationModel = new AuthenticationModel();
+        AuthController authController = new AuthController();
+        AuthView authView = new AuthView();
+        AuthModel authModel = new AuthModel();
 
-        authenticationModel.addObserver(authenticationView);
+        authModel.addObserver(authView);
 
-        authenticationController.addView(authenticationView);
-        authenticationController.addModel(authenticationModel);
+        authController.addView(authView);
+        authController.addModel(authModel);
 
-        authenticationView.addLoginListener(authenticationController);
-        authenticationView.addSignUpListener(authenticationController);
+        authView.addLoginListener(authController);
+        authView.addSignUpListener(authController);
 
     }
 }
