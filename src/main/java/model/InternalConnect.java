@@ -36,7 +36,8 @@ public class InternalConnect implements DatabaseConnection
 
 		try 
 		{
-			Class.forName ("sun.jdbc.odbc.JdbcOdbcDriver");
+			Class.forName("com.mysql.jdbc.Driver");
+//			Class.forName ("sun.jdbc.odbc.JdbcOdbcDriver");
 		}
 		catch (ClassNotFoundException e) 
 		{
