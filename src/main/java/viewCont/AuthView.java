@@ -22,15 +22,15 @@ public class AuthView implements Observer {
     private JPanel PanelAuthentication;
     private JFrame frame;
 
-    public void show(){
+    public void showView(){
         frame = new JFrame("AuthView");
         frame.setContentPane(PanelAuthentication);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
+        viewCont.StaticMethods.positionAndShow(frame);
     }
 
-    public void hide(){
+    public void hideView(){
         frame.setVisible(false);
     }
 

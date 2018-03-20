@@ -48,7 +48,7 @@ public class AuthController extends Observable implements ActionListener, Observ
         if(args == AuthResults.SUCCESSFUL || args == AuthResults.ACCOUNT_CREATED){
 
             setChanged();
-            notifyObservers(MainActions.LOGGED_IN);
+            notifyObservers(MainActions.SHOW_NAVIGATION);
         }
     }
 

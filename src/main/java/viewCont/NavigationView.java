@@ -1,38 +1,37 @@
-package controller;
-import javax.swing.*;
-import viewCont.*;
-import model.*;
+package viewCont;
+import enums.NavigationActions;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *  This class is the controller on the system.  It also initites the main Gui on the system.
  */
-;public class Client  extends JFrame 
+;
+
+public class NavigationView extends JFrame
 {
 	private PriceController pc;
 	private FinController fc;
 	private InvController invc;
 	private DelivController delc;
 	private ReportsController rc;
-	private JButton b1 = new JButton("Price Control");;
+	private JButton buttonShareInformation = new JButton("Share information");;
 	private JButton b2 = new JButton("Inventory Control");
 	private JButton b3 = new JButton("Delivery Charges");
 	private JButton b4 = new JButton("Finacial Approval");;
 	private JButton b5 = new JButton("Reports & Analysis");
 	private JButton b6 = new JButton("Exit");
-	private String theName;
-	   
+
     /**
-     *  Method:         Client (constructor)
+     *  Method:         NavigationView (constructor)
      *
      *  Description:    Initialise the Controller object.
      *
      */
-	public Client(String aName)
-	{
-		theName = aName;
+	public NavigationView(){
 		pc = new PriceController();
 		fc = new FinController();
 		delc = new DelivController();
@@ -40,22 +39,21 @@ import java.awt.event.*;
 		invc = new InvController();
 	}
 	
-	public String  getTheName()
-	{
-		return theName;
-	}
 
     /**
-     *  Method:         start 
+     *  Method:         showView
      *  
      *  Description:    Calls initGui() and centres the Gui();
      *
      */
-	public void start()
-	{
+	public void showView() {
 		System.out.println("App started");
 		initGui();
-		StaticMethods.positionAndShow(this);
+		viewCont.StaticMethods.positionAndShow(this);
+	}
+
+	public void hideView(){
+		this.setVisible(false);
 	}
 	
     /**
@@ -69,59 +67,13 @@ import java.awt.event.*;
 		
 	      this.getContentPane().setLayout(null);
 	      this.setSize(new Dimension(940, 130));
-	      this.setTitle("EStore Prototype");
+	      this.setTitle("Desktop share trader prototype");
 	      this.addWindowListener(new CloseParent());
 	          
-	      b1.addActionListener(new ActionListener()
-	      {	         
-	         public void actionPerformed(ActionEvent e)
-	         {
-	            priceControl(); 	
-	         }
-	      });
+
 	      
-	      b2.addActionListener(new ActionListener()
-	      {	         
-	         public void actionPerformed(ActionEvent e)
-	         {
-	        	 invControl();
-	         }
-	      });
-	      
-	      b3.addActionListener(new ActionListener()
-	      {	         
-	         public void actionPerformed(ActionEvent e)
-	         {
-	        	 delivControl();
-	         }
-	      });
-	      
-	      b4.addActionListener(new ActionListener()
-	      {	         
-	         public void actionPerformed(ActionEvent e)
-	         {
-	        	 finControl();
-	         }
-	      });
-	      
-	      b5.addActionListener(new ActionListener()
-	      {	         
-	         public void actionPerformed(ActionEvent e)
-	         {
-	        	 reportsControl();
-	         }
-	      });
-	      
-	      b6.addActionListener(new ActionListener()
-	      {	         
-	         public void actionPerformed(ActionEvent e)
-	         {
-	        	 System.exit(0);
-	         }
-	      });
-	      
-	      b1.setBounds(new Rectangle(20, 20, 150, 50));
-	      this.getContentPane().add(b1);
+	      buttonShareInformation.setBounds(new Rectangle(20, 20, 150, 50));
+	      this.getContentPane().add(buttonShareInformation);
 	      
 	      b2.setBounds(new Rectangle(170, 20, 150, 50));
 	      this.getContentPane().add(b2);
@@ -138,6 +90,52 @@ import java.awt.event.*;
 	      b6.setBounds(new Rectangle(770, 20, 150, 50));
 	      this.getContentPane().add(b6);	
 	}
+
+	public void addListener(ActionListener actionListener){
+
+	    buttonShareInformation.setActionCommand(NavigationActions.SHARE_INFORMATION.name());
+        buttonShareInformation.addActionListener(actionListener);
+
+        b2.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                invControl();
+            }
+        });
+
+        b3.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                delivControl();
+            }
+        });
+
+        b4.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                finControl();
+            }
+        });
+
+        b5.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                reportsControl();
+            }
+        });
+
+        b6.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+    }
 
     /**
      *  Method:         priceControl()

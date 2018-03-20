@@ -1,3 +1,3 @@
 package enums;
 
-public enum MainActions {LOGGED_IN}
+public enum MainActions {SHOW_NAVIGATION, SHOW_SHARE_INFORMATION}

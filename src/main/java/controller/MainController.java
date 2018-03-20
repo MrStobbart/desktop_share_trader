@@ -3,16 +3,23 @@ package controller;
 import enums.MainActions;
 import model.AuthModel;
 import viewCont.AuthView;
+import viewCont.NavigationView;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class MainController implements Observer {
 
+    private AuthController authController;
+    private AuthView authView;
+    private AuthModel authModel;
+
+    private NavigationController navigationController;
+    private NavigationView navigationView;
 
     public MainController(){
 
-        initAuthentication();
+        showAuthentication();
 
     }
 
@@ -20,18 +27,23 @@ public class MainController implements Observer {
     public void update(Observable observable, Object args){
 
         switch ((MainActions)args){
-            case LOGGED_IN:
-                System.out.println("Show navbar in main controller");
+            case SHOW_NAVIGATION:
+                hideViews();
+                showNavigation();
+                break;
+            case SHOW_SHARE_INFORMATION:
+                hideViews();
+                System.out.println("Show share information");
                 break;
 
         }
     }
 
-    private void initAuthentication(){
+    private void showAuthentication(){
 
-        AuthController authController = new AuthController();
-        AuthView authView = new AuthView();
-        AuthModel authModel = new AuthModel();
+        authController = new AuthController();
+        authView = new AuthView();
+        authModel = new AuthModel();
 
         authModel.addObserver(authView);
         authModel.addObserver(authController);
@@ -42,7 +54,28 @@ public class MainController implements Observer {
 
         authView.addListener(authController);
 
-        authView.show();
+        authView.showView();
     }
 
+    private void showNavigation(){
+        navigationController = new NavigationController();
+        navigationView = new NavigationView();
+
+        navigationController.addObserver(this);
+
+        navigationView.addListener(navigationController);
+        navigationView.showView();
+
+    }
+
+    private void hideViews(){
+
+        if(authView != null){
+            authView.hideView();
+        }
+
+        if(navigationView != null){
+            navigationView.hideView();
+        }
+    }
 }

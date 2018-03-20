@@ -38,7 +38,7 @@ public class ReportsController
 
 	
 	/**
-	*  Method:         start
+	*  Method:         showView
 	*
 	*  Description:    Starts the process of generating reports by displaying a report menu for the user to select which report they want. 
 	*  

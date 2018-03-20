@@ -4,8 +4,8 @@ public class Application{
     public static void main (String[] args){
 
 
-//        Client cl = new Client("TheClient");
-//        cl.start();
+//        NavigationView cl = new NavigationView("TheClient");
+//        cl.showView();
 
         MainController mainController = new MainController();
     }

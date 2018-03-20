@@ -1,23 +1,16 @@
 package viewCont;
-import java.awt.Dimension;
-import java.awt.Rectangle;
+import model.DbConnector;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-
-
-import model.DbConnector;
+import java.sql.ResultSet;
 
 /** 
  *  Class:         FinController
  *
- *  Description:   This class handles the financial element of the Client.
+ *  Description:   This class handles the financial element of the NavigationView.
  *   
  */		
 public class FinController 
@@ -33,7 +26,7 @@ public class FinController
 	private JScrollPane jsp = new JScrollPane(jt);
 
 	/**
-	*  Method:         start
+	*  Method:         showView
 	*
 	*  Description:    Starts the process of setting the fiancial status of a customer
 	*  

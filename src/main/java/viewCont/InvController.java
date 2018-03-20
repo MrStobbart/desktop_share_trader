@@ -1,15 +1,14 @@
 package viewCont;
-import java.sql.ResultSet;
-
-import javax.swing.JOptionPane;
-
-import model.ExternalConnect;
 import model.DbConnector;
+import model.ExternalConnect;
+
+import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *  Class:         InvController
  *
- *  Description:   This class handles the Inventory element of the Client.
+ *  Description:   This class handles the Inventory element of the NavigationView.
  *   
  */		
 public class InvController 
@@ -18,7 +17,7 @@ public class InvController
 	private ExternalConnect ex = new ExternalConnect();
 	private DbConnector ic = new DbConnector();
 	/**
-	*  Method:         start
+	*  Method:         showView
 	*
 	*  Description:    Starts the process of updating the local and external databases with the required quantities 
 	*  

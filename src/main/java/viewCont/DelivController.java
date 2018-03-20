@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  *  Class:         DelivController
  *
- *  Description:   This class handles the delivery element of the Client.
+ *  Description:   This class handles the delivery element of the NavigationView.
  *   
  */		
 public class DelivController 
@@ -22,7 +22,7 @@ public class DelivController
 	private JFrame view = new JFrame();	
 	
 	/**
-	*  Method:         start
+	*  Method:         showView
 	*
 	*  Description:    Starts the process of setting the finding out if the customer has ok finacial status
 	*  If so delivery can be offered.
