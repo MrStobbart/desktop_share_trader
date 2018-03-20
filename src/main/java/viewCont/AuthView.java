@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import enums.AuthActions;
 import enums.AuthResults;
+import util.StaticMethods;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +28,7 @@ public class AuthView implements Observer {
         frame.setContentPane(PanelAuthentication);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        viewCont.StaticMethods.positionAndShow(frame);
+        StaticMethods.positionAndShow(frame);
     }
 
     public void hideView(){

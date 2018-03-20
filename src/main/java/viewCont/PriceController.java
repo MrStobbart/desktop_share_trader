@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import model.DbConnector;
+import util.StaticMethods;
+
 /**
  *  Class:         PriceController
  *
@@ -253,10 +255,10 @@ public class PriceController extends JFrame
 	*/		
 	public void addProductToSaleGroup()
 	{
-		String possibleError = viewCont.StaticMethods.checkIntInput(jt3.getText());
-		boolean percentFlag = viewCont.StaticMethods.checkError(possibleError);
-		possibleError += viewCont.StaticMethods.checkIntInput(jt4.getText());
-		boolean pidFlag = viewCont.StaticMethods.checkError(possibleError);
+		String possibleError = StaticMethods.checkIntInput(jt3.getText());
+		boolean percentFlag = StaticMethods.checkError(possibleError);
+		possibleError += StaticMethods.checkIntInput(jt4.getText());
+		boolean pidFlag = StaticMethods.checkError(possibleError);
 		if ((percentFlag) && (pidFlag))
 		{	
 			int percent = Integer.parseInt(jt3.getText());
@@ -280,10 +282,10 @@ public class PriceController extends JFrame
 	*/			
 	public void amendIndividualPrice()
 	{
-		String possibleError = viewCont.StaticMethods.checkIntInput(jt1.getText());
-		boolean productFlag = viewCont.StaticMethods.checkError(possibleError);
-		possibleError += viewCont.StaticMethods.checkIntInput(jt2.getText());
-		boolean pidFlag = viewCont.StaticMethods.checkError(possibleError);
+		String possibleError = StaticMethods.checkIntInput(jt1.getText());
+		boolean productFlag = StaticMethods.checkError(possibleError);
+		possibleError += StaticMethods.checkIntInput(jt2.getText());
+		boolean pidFlag = StaticMethods.checkError(possibleError);
 		if ((productFlag) && (pidFlag))
 		{	
 			double costAdjustment = Double.parseDouble(jt1.getText());

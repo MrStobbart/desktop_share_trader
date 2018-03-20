@@ -1,5 +1,6 @@
 package viewCont;
 import enums.NavigationActions;
+import util.StaticMethods;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +50,7 @@ public class NavigationView extends JFrame
 	public void showView() {
 		System.out.println("App started");
 		initGui();
-		viewCont.StaticMethods.positionAndShow(this);
+		StaticMethods.positionAndShow(this);
 	}
 
 	public void hideView(){
