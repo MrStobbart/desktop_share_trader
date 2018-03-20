@@ -6,16 +6,27 @@ import java.util.Observable;
 
 public class AuthModel extends Observable{
 
+    private DbConnector dbConnector;
+
+    public AuthModel(){
+        dbConnector = new DbConnector();
+    }
+
     public void login(String username, String password){
 
-        // TODO do database things
         System.out.println("Login with " + username + " and " + password);
-        DbConnector dbConnector = new DbConnector();
+
+        ResultSet resultSet;
+        String sqlStatement = "select * from users " +
+                       "where username = '" + username + "' " +
+                       "and password = '" + password + "'";
+
         dbConnector.connect();
-        ResultSet resultSet = dbConnector.query("select * from users where username = '" + username + "' and password = '" + password + "'");
+        resultSet = dbConnector.query(sqlStatement);
 
         try{
 
+            // This returns true when data was returned from the db
             if(resultSet.isBeforeFirst()){
                 System.out.println("true");
                 notifyObservers(true);
@@ -32,8 +43,38 @@ public class AuthModel extends Observable{
 
     public void signUp(String username, String password){
 
-        // TODO do database things
         System.out.println("SignUp with " + username + " and " + password);
-        notifyObservers(true);
+        if(usernameAvailable(username)){
+
+            String sqlStatement = "INSERT INTO users (username, password, permissions)" +
+                                  "VALUES (\"" + username + "\", \"" + password + "\", 0)";
+            dbConnector.connect();
+            dbConnector.update(sqlStatement);
+            System.out.println("User created");
+            notifyObservers(true);
+        }else{
+            System.out.println("Username not available");
+            notifyObservers(false);
+        }
+        // TODO do database things
+    }
+
+    private boolean usernameAvailable(String username){
+
+        ResultSet resultSet;
+
+        dbConnector.connect();
+        resultSet = dbConnector.query("select * from users where username = '" + username + "'");
+
+        try {
+            if(!resultSet.isBeforeFirst()){
+                // Username available
+                return true;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
