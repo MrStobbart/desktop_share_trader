@@ -1,0 +1,3 @@
+package enums;
+
+public enum AuthResults {SUCCESSFUL, WRONG_CREDENTIALS, ACCOUNT_CREATED, USERNAME_NOT_FREE}

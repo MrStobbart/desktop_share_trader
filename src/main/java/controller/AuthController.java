@@ -1,13 +1,17 @@
 package controller;
 
 import enums.AuthActions;
+import enums.AuthResults;
+import enums.MainActions;
 import model.AuthModel;
 import viewCont.AuthView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class AuthController implements ActionListener {
+public class AuthController extends Observable implements ActionListener, Observer {
 
     private String username;
     private String password;
@@ -28,12 +32,24 @@ public class AuthController implements ActionListener {
         username = authView.getAuthUsername();
         password = authView.getAuthPassword();
 
-        if(e.getActionCommand() == AuthActions.login.name()){
+        if(e.getActionCommand() == AuthActions.LOGIN.name()){
             authModel.login(username, password);
         }else{
             authModel.signUp(username, password);
         }
 
+    }
+
+    @Override
+    public void update(Observable observable, Object args){
+
+        System.out.println("Authcontroller notified " + args);
+
+        if(args == AuthResults.SUCCESSFUL || args == AuthResults.ACCOUNT_CREATED){
+
+            setChanged();
+            notifyObservers(MainActions.LOGGED_IN);
+        }
     }
 
     public void addView(AuthView authView){

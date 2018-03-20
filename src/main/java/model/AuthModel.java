@@ -1,5 +1,7 @@
 package model;
 
+import enums.AuthResults;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
@@ -29,10 +31,14 @@ public class AuthModel extends Observable{
             // This returns true when data was returned from the db
             if(resultSet.isBeforeFirst()){
                 System.out.println("true");
-                notifyObservers(true);
+
+                setChanged();
+                notifyObservers(AuthResults.SUCCESSFUL);
             }else{
                 System.out.println("false");
-                notifyObservers(false);
+
+                setChanged();
+                notifyObservers(AuthResults.WRONG_CREDENTIALS);
             }
 
         } catch(SQLException e){
@@ -51,12 +57,16 @@ public class AuthModel extends Observable{
             dbConnector.connect();
             dbConnector.update(sqlStatement);
             System.out.println("User created");
-            notifyObservers(true);
+
+            setChanged();
+            notifyObservers(AuthResults.ACCOUNT_CREATED);
         }else{
             System.out.println("Username not available");
-            notifyObservers(false);
+
+            setChanged();
+            notifyObservers(AuthResults.USERNAME_NOT_FREE);
         }
-        // TODO do database things
+
     }
 
     private boolean usernameAvailable(String username){

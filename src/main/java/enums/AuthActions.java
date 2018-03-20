@@ -1,3 +1,3 @@
 package enums;
 
-public enum AuthActions {login, signUp}
+public enum AuthActions {LOGIN, SIGN_UP}

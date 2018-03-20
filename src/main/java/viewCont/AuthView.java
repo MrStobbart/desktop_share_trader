@@ -4,6 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import enums.AuthActions;
+import enums.AuthResults;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,31 +14,46 @@ import java.util.Observer;
 
 
 public class AuthView implements Observer {
+
     private JTextField textFieldUsername;
     private JPasswordField passwordFieldPassword;
     private JButton buttonLogin;
     private JButton buttonSignUp;
     private JPanel PanelAuthentication;
+    private JFrame frame;
 
-
-    public AuthView() {
-        JFrame frame = new JFrame("AuthView");
+    public void show(){
+        frame = new JFrame("AuthView");
         frame.setContentPane(PanelAuthentication);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
+    public void hide(){
+        frame.setVisible(false);
+    }
+
     public void addListener(ActionListener actionListener) {
-        buttonLogin.setActionCommand(AuthActions.login.name());
+        buttonLogin.setActionCommand(AuthActions.LOGIN.name());
         buttonLogin.addActionListener(actionListener);
 
-        buttonSignUp.setActionCommand(AuthActions.signUp.name());
+        buttonSignUp.setActionCommand(AuthActions.SIGN_UP.name());
         buttonSignUp.addActionListener(actionListener);
     }
 
-    public void update(Observable observable, Object object) {
-        System.out.println("View      : Observable is " + observable.getClass() + ", object passed is " + object.getClass());
+    @Override
+    public void update(Observable observable, Object args) {
+
+        if(args == AuthResults.WRONG_CREDENTIALS) {
+            JOptionPane.showMessageDialog(null, "Wrong login credentials", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if(args == AuthResults.USERNAME_NOT_FREE){
+            JOptionPane.showMessageDialog(null, "Username not available", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
     }
 
     public String getAuthUsername(){
