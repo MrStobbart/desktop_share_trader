@@ -1,5 +1,6 @@
 package controller;
 
+import enums.MainActions;
 import enums.ShareInformationActions;
 import model.ShareInformationModel;
 import viewCont.ShareInformationView;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ShareInformationController implements Observer, ActionListener {
+public class ShareInformationController extends Observable implements Observer, ActionListener {
 
     private ShareInformationModel shareInformationModel;
     private ShareInformationView shareInformationView;
@@ -36,14 +37,17 @@ public class ShareInformationController implements Observer, ActionListener {
 
         if(e.getActionCommand().equals(ShareInformationActions.TRACK_SHARE.name())){
 
-            String tradingCode = shareInformationView.getSelectedRowId();
+            String tradingCode = shareInformationView.getSelectedRowShareCode();
             int minPrice = shareInformationView.getMinPrice();
             int maxPrice = shareInformationView.getMaxPrice();
 
             shareInformationModel.setShareAlert(tradingCode, minPrice, maxPrice);
         } else if(e.getActionCommand().equals(ShareInformationActions.BACK.name())){
-            System.out.println("Back button clicked");
-            // TODO close window and go back
+            setChanged();
+            notifyObservers(MainActions.SHOW_NAVIGATION);
+        } else if(e.getActionCommand().equals(ShareInformationActions.TRADES.name())){
+            setChanged();
+            notifyObservers(MainActions.SHOW_TRADES);
         }
     }
 }

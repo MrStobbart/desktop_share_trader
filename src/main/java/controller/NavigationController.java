@@ -21,6 +21,12 @@ public class NavigationController extends Observable implements ActionListener {
             setChanged();
             notifyObservers(MainActions.SHOW_SHARE_INFORMATION);
         }
+
+        if(event.getActionCommand() == NavigationActions.TRADES.name()){
+
+            setChanged();
+            notifyObservers(MainActions.SHOW_TRADES);
+        }
     }
 
     public void setView(NavigationView navigationView){

@@ -1,6 +1,5 @@
 package model;
 
-import javax.swing.table.AbstractTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
@@ -8,11 +7,11 @@ import java.util.Observable;
 public class ShareInformationModel extends Observable{
 
     private DbConnector dbConnector;
-    private ShareInformationTable shareInformationTable;
+    private TableModel tableModel;
 
     public ShareInformationModel(){
         dbConnector = new DbConnector();
-        shareInformationTable = new ShareInformationTable();
+        tableModel = new TableModel();
         loadTable();
     }
 
@@ -54,12 +53,12 @@ public class ShareInformationModel extends Observable{
             }
 
 
-            shareInformationTable.setColumnNames(columnNames);
-            shareInformationTable.setData(dataGrid);
+            tableModel.setColumnNames(columnNames);
+            tableModel.setData(dataGrid);
 
 
             setChanged();
-            notifyObservers(shareInformationTable);
+            notifyObservers(tableModel);
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -82,44 +81,6 @@ public class ShareInformationModel extends Observable{
         }
     }
 
-    class ShareInformationTable extends AbstractTableModel {
-        private String[] columnNames;
-        private Object[][] data;
-
-
-        public Object[][] getData() {
-            return data;
-        }
-
-        public void setData(Object[][] data) {
-            this.data = data;
-        }
-
-        public String[] getColumnNames() {
-            return columnNames;
-        }
-
-        public void setColumnNames(String[] columnNames) {
-            this.columnNames = columnNames;
-        }
-
-        public int getColumnCount() {
-            return columnNames.length;
-        }
-
-        public int getRowCount() {
-            return data.length;
-        }
-
-        public String getColumnName(int col) {
-            return columnNames[col];
-        }
-
-        public Object getValueAt(int row, int col) {
-            return data[row][col];
-        }
-
-    }
 }
 
 

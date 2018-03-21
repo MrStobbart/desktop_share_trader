@@ -1,3 +1,3 @@
 package enums;
 
-public enum NavigationActions {SHARE_INFORMATION}
+public enum NavigationActions {SHARE_INFORMATION, TRADES}

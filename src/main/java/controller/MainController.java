@@ -3,9 +3,11 @@ package controller;
 import enums.MainActions;
 import model.AuthModel;
 import model.ShareInformationModel;
+import model.TradesModel;
 import viewCont.AuthView;
 import viewCont.NavigationView;
 import viewCont.ShareInformationView;
+import viewCont.TradesView;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -22,6 +24,10 @@ public class MainController implements Observer {
     private ShareInformationController shareInformationController;
     private ShareInformationModel shareInformationModel;
     private ShareInformationView shareInformationView;
+
+    private TradesController tradesController;
+    private TradesView tradesView;
+    private TradesModel tradesModel;
 
     public MainController(){
 
@@ -41,6 +47,9 @@ public class MainController implements Observer {
                 hideViews();
                 showShareInformation();
                 break;
+            case SHOW_TRADES:
+                hideViews();
+                showTrades();
 
         }
     }
@@ -81,11 +90,35 @@ public class MainController implements Observer {
 
         shareInformationController.setModel(shareInformationModel);
         shareInformationController.setView(shareInformationView);
+        shareInformationController.addObserver(this);
 
         shareInformationModel.addObserver(shareInformationView);
 
         shareInformationView.addListener(shareInformationController);
         shareInformationController.showView();
+
+    }
+
+    private void showTrades(){
+
+        tradesController = new TradesController();
+        tradesModel = new TradesModel();
+        tradesView = new TradesView();
+
+        tradesController.setModel(tradesModel);
+        tradesController.setView(tradesView);
+        tradesController.addObserver(this);
+
+        tradesModel.addObserver(tradesView);
+        tradesView.addListener(tradesController);
+
+        String shareCode = shareInformationView.getSelectedRowShareCode();
+        if(shareCode != null){
+            tradesController.showView(shareCode);
+        }else{
+            // So that something
+            showShareInformation();
+        }
 
     }
 
@@ -97,6 +130,14 @@ public class MainController implements Observer {
 
         if(navigationView != null){
             navigationView.hideView();
+        }
+
+        if(shareInformationView != null){
+            shareInformationView.hideView();
+        }
+
+        if(tradesView != null){
+            tradesView.hideView();
         }
     }
 }

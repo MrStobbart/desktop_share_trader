@@ -21,6 +21,7 @@ public class ShareInformationView implements Observer {
 
     private JButton buttonWatchShare = new JButton("Track selected share");
     private JButton buttonBack = new JButton("Back");
+    private JButton buttonTrades = new JButton("View Trades with this share");
     private JLabel labelMinPrice = new JLabel("Min share price for alert");
     private JLabel labelMaxPrice = new JLabel("Max share price for alert");
     private SpinnerModel minPriceModel = new SpinnerNumberModel(100,  0, 10000, 1);
@@ -28,7 +29,7 @@ public class ShareInformationView implements Observer {
     private SpinnerModel maxPriceModel = new SpinnerNumberModel(250,  0, 10000, 1);
     private JSpinner spinnerMaxPrice = new JSpinner(maxPriceModel);
 
-	private JFrame view = new JFrame();
+	private JFrame frame = new JFrame();
 	private JTable table;
 	private JScrollPane scrollPane;
 
@@ -44,6 +45,10 @@ public class ShareInformationView implements Observer {
 
 
 	}
+
+	public void hideView(){
+	    frame.setVisible(false);
+    }
 	
 
 
@@ -70,28 +75,33 @@ public class ShareInformationView implements Observer {
         buttonBack.setActionCommand(ShareInformationActions.BACK.name());
         buttonBack.setBounds(new Rectangle(20, 270, 100, 40));
 
+        buttonTrades.setActionCommand(ShareInformationActions.TRADES.name());
+        buttonTrades.setBounds(new Rectangle( 70, 320, 200, 40));
+
 		scrollPane.setBounds(new Rectangle(20,20,550,200));
 
-        view.getContentPane().add(labelMinPrice);
-        view.getContentPane().add(spinnerMinPrice);
-        view.getContentPane().add(labelMaxPrice);
-        view.getContentPane().add(spinnerMaxPrice);
-        view.getContentPane().add(buttonBack);
-        view.getContentPane().add(buttonWatchShare);
-		view.getContentPane().add(scrollPane);
-		view.getContentPane().setLayout(null);
-		view.setSize(new Dimension(600, 400));
-		view.setTitle("Share Information");
-		view.addWindowListener(new CloseChild(view));
-		view.setVisible(true);
+        frame.getContentPane().add(labelMinPrice);
+        frame.getContentPane().add(spinnerMinPrice);
+        frame.getContentPane().add(labelMaxPrice);
+        frame.getContentPane().add(spinnerMaxPrice);
+        frame.getContentPane().add(buttonBack);
+        frame.getContentPane().add(buttonWatchShare);
+        frame.getContentPane().add(buttonTrades);
+		frame.getContentPane().add(scrollPane);
+		frame.getContentPane().setLayout(null);
+		frame.setSize(new Dimension(600, 400));
+		frame.setTitle("Share Information");
+		frame.addWindowListener(new CloseChild(frame));
+		frame.setVisible(true);
 	}
 
 	public void addListener(ActionListener actionListener){
 	    buttonWatchShare.addActionListener(actionListener);
 	    buttonBack.addActionListener(actionListener);
+        buttonTrades.addActionListener(actionListener);
     }
 
-    public String getSelectedRowId(){
+    public String getSelectedRowShareCode(){
 
 	    int selectedRow = table.getSelectedRow();
 	    if(selectedRow == -1){

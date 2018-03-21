@@ -19,12 +19,12 @@ public class AuthModel extends Observable{
         System.out.println("Login with " + username + " and " + password);
 
         ResultSet resultSet;
-        String sqlStatement = "select * from users " +
-                       "where username = '" + username + "' " +
-                       "and password = '" + password + "'";
+        String sql = "select * from users " +
+                     "where username = '" + username + "' " +
+                     "and password = '" + password + "'";
 
         dbConnector.connect();
-        resultSet = dbConnector.query(sqlStatement);
+        resultSet = dbConnector.query(sql);
 
         try{
 

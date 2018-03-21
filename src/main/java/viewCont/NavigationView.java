@@ -19,10 +19,10 @@ public class NavigationView extends JFrame
 	private InvController invc;
 	private DelivController delc;
 	private ReportsController rc;
-	private JButton buttonShareInformation = new JButton("Share information");;
-	private JButton b2 = new JButton("Inventory Control");
+	private JButton buttonShareInformation = new JButton("Share information");
+	private JButton buttonTrades = new JButton("Trades");
 	private JButton b3 = new JButton("Delivery Charges");
-	private JButton b4 = new JButton("Finacial Approval");;
+	private JButton b4 = new JButton("Finacial Approval");
 	private JButton b5 = new JButton("Reports & Analysis");
 	private JButton b6 = new JButton("Exit");
 
@@ -76,20 +76,20 @@ public class NavigationView extends JFrame
 	      buttonShareInformation.setBounds(new Rectangle(20, 20, 150, 50));
 	      this.getContentPane().add(buttonShareInformation);
 	      
-	      b2.setBounds(new Rectangle(170, 20, 150, 50));
-	      this.getContentPane().add(b2);
+	      buttonTrades.setBounds(new Rectangle(170, 20, 150, 50));
+	      this.getContentPane().add(buttonTrades);
 	      
 	      b3.setBounds(new Rectangle(320, 20, 150, 50));
 	      this.getContentPane().add(b3);
 	      
 	      b4.setBounds(new Rectangle(470, 20, 150, 50));
-	      this.getContentPane().add(b4);	
+	      this.getContentPane().add(b4);
 	      
 	      b5.setBounds(new Rectangle(620, 20, 150, 50));
-	      this.getContentPane().add(b5);	
+	      this.getContentPane().add(b5);
 	      
 	      b6.setBounds(new Rectangle(770, 20, 150, 50));
-	      this.getContentPane().add(b6);	
+	      this.getContentPane().add(b6);
 	}
 
 	public void addListener(ActionListener actionListener){
@@ -97,13 +97,8 @@ public class NavigationView extends JFrame
 	    buttonShareInformation.setActionCommand(NavigationActions.SHARE_INFORMATION.name());
         buttonShareInformation.addActionListener(actionListener);
 
-        b2.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                invControl();
-            }
-        });
+        buttonTrades.setActionCommand(NavigationActions.TRADES.name());
+        buttonTrades.addActionListener(actionListener);
 
         b3.addActionListener(new ActionListener()
         {
