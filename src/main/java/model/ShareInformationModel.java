@@ -40,14 +40,14 @@ public class ShareInformationModel extends Observable{
                 col++;
 
                 int price = resultSet.getInt("PRICE");
-                dataGrid[row][col] = Double.toString((double) price / (double)100) + "€";
+                dataGrid[row][col] = "£" + String.format("%.2f", (double) price / 100);
                 col++;
 
                 int volume = resultSet.getInt("VOLUME");
                 dataGrid[row][col] = volume;
                 col++;
 
-                dataGrid[row][col] = (double) price * (double) volume / (double) 100;
+                dataGrid[row][col] = "£" + String.format("%.2f", (double) price * (double) volume / 100 / 1000000) + "M";
 
                 col = 0;
                 row++;
