@@ -38,7 +38,7 @@ public class ReportsController
 
 	
 	/**
-	*  Method:         showView
+	*  Method:         initView
 	*
 	*  Description:    Starts the process of generating reports by displaying a report menu for the user to select which report they want. 
 	*  
@@ -51,7 +51,7 @@ public class ReportsController
 	}
 	
 	/**
-	*  Method:         initGui
+	*  Method:         initView
 	*
 	*  Description:    Inititates the main GUI
 	*  

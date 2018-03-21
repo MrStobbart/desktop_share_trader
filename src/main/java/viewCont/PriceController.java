@@ -64,7 +64,7 @@ public class PriceController extends JFrame
     }
 
 	/**
-	*  Method:         showView
+	*  Method:         initView
 	*
 	*  Description:    Starts the price Controller. 
 	*  

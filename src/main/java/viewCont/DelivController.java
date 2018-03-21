@@ -22,7 +22,7 @@ public class DelivController
 	private JFrame view = new JFrame();	
 	
 	/**
-	*  Method:         showView
+	*  Method:         initView
 	*
 	*  Description:    Starts the process of setting the finding out if the customer has ok finacial status
 	*  If so delivery can be offered.
@@ -53,7 +53,7 @@ public class DelivController
 	}
 	
 	/**
-	*  Method:         initGui
+	*  Method:         initView
 	*
 	*  Description:    Inititates the main  GUI
 	*  

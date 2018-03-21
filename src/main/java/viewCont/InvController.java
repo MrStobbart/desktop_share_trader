@@ -17,7 +17,7 @@ public class InvController
 	private ExternalConnect ex = new ExternalConnect();
 	private DbConnector ic = new DbConnector();
 	/**
-	*  Method:         showView
+	*  Method:         initView
 	*
 	*  Description:    Starts the process of updating the local and external databases with the required quantities 
 	*  

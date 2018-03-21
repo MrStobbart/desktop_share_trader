@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 public class NavigationView extends JFrame
 {
 	private PriceController pc;
-	private FinController fc;
+	private ShareInformationView fc;
 	private InvController invc;
 	private DelivController delc;
 	private ReportsController rc;
@@ -34,7 +34,7 @@ public class NavigationView extends JFrame
      */
 	public NavigationView(){
 		pc = new PriceController();
-		fc = new FinController();
+		fc = new ShareInformationView();
 		delc = new DelivController();
 		rc = new ReportsController();
 		invc = new InvController();
@@ -42,9 +42,9 @@ public class NavigationView extends JFrame
 	
 
     /**
-     *  Method:         showView
+     *  Method:         initView
      *  
-     *  Description:    Calls initGui() and centres the Gui();
+     *  Description:    Calls initView() and centres the Gui();
      *
      */
 	public void showView() {
@@ -58,7 +58,7 @@ public class NavigationView extends JFrame
 	}
 	
     /**
-     *  Method:         initGui()
+     *  Method:         initView()
      *
      *  Description:    Initialise the Gui
      *

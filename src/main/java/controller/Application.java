@@ -5,7 +5,7 @@ public class Application{
 
 
 //        NavigationView cl = new NavigationView("TheClient");
-//        cl.showView();
+//        cl.initView();
 
         MainController mainController = new MainController();
     }
