@@ -23,7 +23,7 @@ public class NavigationController extends Observable implements ActionListener {
         }
     }
 
-    public void addView(NavigationView navigationView){
+    public void setView(NavigationView navigationView){
         this.navigationView = navigationView;
     }
 }

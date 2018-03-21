@@ -20,7 +20,7 @@ public class ShareInformationModel extends Observable{
 
         ResultSet resultSet;
         int rowCount = 30;
-        String[] columnNames = {"Trading code", "Company", "Price", "Volume", "Company value"};
+        String[] columnNames = {"Share code", "Company", "Price", "Volume", "Company value"};
         Object[][] dataGrid = new Object[rowCount][columnNames.length];
 
         dbConnector.connect();
@@ -33,7 +33,7 @@ public class ShareInformationModel extends Observable{
 
         try{
             while (resultSet.next() && row <= rowCount){
-                dataGrid[row][col] = resultSet.getString("TRADING_CODE");
+                dataGrid[row][col] = resultSet.getString("SHARE_CODE");
                 col++;
 
                 dataGrid[row][col] = resultSet.getString("COMPANY_NAME");
@@ -66,6 +66,20 @@ public class ShareInformationModel extends Observable{
 
         dbConnector.closeConnection();
 
+    }
+
+    public void setShareAlert(String shareCode, int min, int max){
+
+        if(!(shareCode == null)){
+
+            // TODO somehow get the userid here
+            String sql = "INSERT INTO SHARE_ALERTS (SHARE_CODE, USER_ID, MIN, MAX)" +
+                         "VALUES (\"" + shareCode + "\", 1, " + min + ", " + max + ")";
+
+            dbConnector.connect();
+            dbConnector.update(sql);
+            dbConnector.closeConnection();
+        }
     }
 
     class ShareInformationTable extends AbstractTableModel {

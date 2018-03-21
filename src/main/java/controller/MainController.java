@@ -54,8 +54,8 @@ public class MainController implements Observer {
         authModel.addObserver(authView);
         authModel.addObserver(authController);
 
-        authController.addView(authView);
-        authController.addModel(authModel);
+        authController.setView(authView);
+        authController.setView(authModel);
         authController.addObserver(this);
 
         authView.addListener(authController);
@@ -79,11 +79,12 @@ public class MainController implements Observer {
         shareInformationModel = new ShareInformationModel();
         shareInformationView = new ShareInformationView();
 
-        shareInformationController.addModel(shareInformationModel);
-        shareInformationController.addView(shareInformationView);
+        shareInformationController.setModel(shareInformationModel);
+        shareInformationController.setView(shareInformationView);
 
         shareInformationModel.addObserver(shareInformationView);
 
+        shareInformationView.addListener(shareInformationController);
         shareInformationController.showView();
 
     }

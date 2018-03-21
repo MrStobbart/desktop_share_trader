@@ -32,7 +32,7 @@ public class AuthController extends Observable implements ActionListener, Observ
         username = authView.getAuthUsername();
         password = authView.getAuthPassword();
 
-        if(e.getActionCommand() == AuthActions.LOGIN.name()){
+        if(e.getActionCommand().equals(AuthActions.LOGIN.name())){
             authModel.login(username, password);
         }else{
             authModel.signUp(username, password);
@@ -52,11 +52,11 @@ public class AuthController extends Observable implements ActionListener, Observ
         }
     }
 
-    public void addView(AuthView authView){
+    public void setView(AuthView authView){
         this.authView = authView;
     }
 
-    public void addModel(AuthModel authModel){
+    public void setView(AuthModel authModel){
         this.authModel = authModel;
     }
 
