@@ -27,6 +27,12 @@ public class NavigationController extends Observable implements ActionListener {
             setChanged();
             notifyObservers(MainActions.SHOW_TRADES);
         }
+
+        if(event.getActionCommand() == NavigationActions.BROKERS.name()){
+
+            setChanged();
+            notifyObservers(MainActions.SHOW_BROKERS);
+        }
     }
 
     public void setView(NavigationView navigationView){

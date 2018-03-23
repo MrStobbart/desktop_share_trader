@@ -2,12 +2,10 @@ package controller;
 
 import enums.MainActions;
 import model.AuthModel;
+import model.BrokersModel;
 import model.ShareInformationModel;
 import model.TradesModel;
-import viewCont.AuthView;
-import viewCont.NavigationView;
-import viewCont.ShareInformationView;
-import viewCont.TradesView;
+import viewCont.*;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +26,10 @@ public class MainController implements Observer {
     private TradesController tradesController;
     private TradesView tradesView;
     private TradesModel tradesModel;
+
+    private BrokersController brokersController;
+    private BrokersModel brokersModel;
+    private BrokersView brokersView;
 
     public MainController(){
 
@@ -50,8 +52,31 @@ public class MainController implements Observer {
             case SHOW_TRADES:
                 hideViews();
                 showTrades();
+                break;
+            case SHOW_BROKERS:
+                hideViews();
+                showBrokers();
+                break;
 
         }
+
+        // TODO check for monitored shares
+    }
+
+    private void showBrokers() {
+        brokersController = new BrokersController();
+        brokersModel = new BrokersModel();
+        brokersView = new BrokersView();
+
+        brokersController.setModel(brokersModel);
+        brokersController.setView(brokersView);
+        brokersController.addObserver(this);
+
+        brokersModel.addObserver(brokersView);
+        brokersController.showView();
+        brokersView.addListener(brokersController);
+        // TODO write this
+        System.out.println("Show brokers");
     }
 
     private void showAuthentication(){
@@ -138,6 +163,10 @@ public class MainController implements Observer {
 
         if(tradesView != null){
             tradesView.hideView();
+        }
+
+        if(brokersView != null){
+            brokersView.hideView();
         }
     }
 }

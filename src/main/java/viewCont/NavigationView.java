@@ -12,8 +12,7 @@ import java.awt.event.ActionListener;
  */
 ;
 
-public class NavigationView extends JFrame
-{
+public class NavigationView extends JFrame {
 	private PriceController pc;
 	private ShareInformationView fc;
 	private InvController invc;
@@ -21,7 +20,7 @@ public class NavigationView extends JFrame
 	private ReportsController rc;
 	private JButton buttonShareInformation = new JButton("Share information");
 	private JButton buttonTrades = new JButton("Trades");
-	private JButton b3 = new JButton("Delivery Charges");
+	private JButton buttonBrokers = new JButton("Brokers");
 	private JButton b4 = new JButton("Finacial Approval");
 	private JButton b5 = new JButton("Reports & Analysis");
 	private JButton b6 = new JButton("Exit");
@@ -48,7 +47,6 @@ public class NavigationView extends JFrame
      *
      */
 	public void showView() {
-		System.out.println("App started");
 		initGui();
 		StaticMethods.positionAndShow(this);
 	}
@@ -79,8 +77,8 @@ public class NavigationView extends JFrame
 	      buttonTrades.setBounds(new Rectangle(170, 20, 150, 50));
 	      this.getContentPane().add(buttonTrades);
 	      
-	      b3.setBounds(new Rectangle(320, 20, 150, 50));
-	      this.getContentPane().add(b3);
+	      buttonBrokers.setBounds(new Rectangle(320, 20, 150, 50));
+	      this.getContentPane().add(buttonBrokers);
 	      
 	      b4.setBounds(new Rectangle(470, 20, 150, 50));
 	      this.getContentPane().add(b4);
@@ -100,13 +98,8 @@ public class NavigationView extends JFrame
         buttonTrades.setActionCommand(NavigationActions.TRADES.name());
         buttonTrades.addActionListener(actionListener);
 
-        b3.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                delivControl();
-            }
-        });
+        buttonBrokers.setActionCommand(NavigationActions.BROKERS.name());
+        buttonBrokers.addActionListener(actionListener);
 
         b4.addActionListener(new ActionListener()
         {

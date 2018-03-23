@@ -26,7 +26,8 @@ public class TradesModel extends Observable{
             dbConnector.connect();
 
             String sql = "SELECT * FROM share_trader_local.TRADES " +
-                         "WHERE SHARE_CODE=\"" + shareCode + "\"";
+                         "WHERE SHARE_CODE=\"" + shareCode + "\"" +
+                         "";
             resultSet = dbConnector.query(sql);
 
             int row = 0;
