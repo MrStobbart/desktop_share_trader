@@ -20,14 +20,14 @@ public class TradesModel extends Observable{
 
             ResultSet resultSet;
             int rowCount = 30;
-            String[] columnNames = {"Buyer", "Seller", "Volume", "Price", "Total Price", "Date and time"};
+            String[] columnNames = {"Buyer", "Seller", "Volume", "Price", "Total Price", "Date and time", "Broker"};
             Object[][] dataGrid = new Object[rowCount][columnNames.length];
 
             dbConnector.connect();
 
-            String sql = "SELECT * FROM share_trader_local.TRADES " +
-                         "WHERE SHARE_CODE=\"" + shareCode + "\"" +
-                         "";
+            String sql = "SELECT t.BUYER, t.SELLER, t.VOLUME, t.PRICE, t.DATE_TIME, b.NAME FROM share_trader_local.TRADES t " +
+                         "LEFT JOIN BROKERS b on b.ID = t.BROKER_ID " +
+                         "WHERE SHARE_CODE=\"" + shareCode + "\"";
             resultSet = dbConnector.query(sql);
 
             int row = 0;
@@ -53,6 +53,9 @@ public class TradesModel extends Observable{
                     col++;
 
                     dataGrid[row][col] = resultSet.getString("DATE_TIME");
+                    col++;
+
+                    dataGrid[row][col] = resultSet.getString("NAME");
 
                     col = 0;
                     row++;
