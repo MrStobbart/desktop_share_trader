@@ -103,18 +103,24 @@ public class BrokersView implements Observer {
 	    return selectedRow;
     }
 
+    /**
+     * Returns the value of the textAreaBrokerField and sets it to an empty string afterwards
+     * @return  String in the textAreaBrokerField
+     */
     public String getRecommendationField(){
 	    String inputText = textAreaBrokerField.getText();
 	    textAreaBrokerField.setText("");
 	    return inputText;
     }
 
-    public void sortTable(String searchCriteria){
-	    if(searchCriteria == null || searchCriteria.isEmpty()){
-	        searchCriteria = ".*";
+    public void sortTable(String filterCriteria){
+
+	    // Set regex string to match all when no filter was given
+	    if(filterCriteria == null || filterCriteria.isEmpty()){
+	        filterCriteria = ".*";
         }
         TableRowSorter<TableModel> sorter = new TableRowSorter<>((table.getModel()));
-        sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+searchCriteria+"$",2));
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+filterCriteria+"$",2));
 
         table.setRowSorter(sorter);
     }

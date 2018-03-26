@@ -2,9 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Observable;
-import java.util.stream.Stream;
 
 public class BrokersModel extends Observable{
 
@@ -71,10 +69,4 @@ public class BrokersModel extends Observable{
         }
     }
 
-    public void sortTable(String recommendationField) {
-        Stream<Object[]> results = Arrays.stream(dataGrid)
-                .filter(p -> p[2] == recommendationField);
-//        Object[][] test = results.toArray();
-        // TODO write this function
-    }
 }
