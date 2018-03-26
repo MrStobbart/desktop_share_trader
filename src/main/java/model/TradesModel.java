@@ -66,8 +66,13 @@ public class TradesModel extends Observable{
                 tableModel.setData(dataGrid);
 
 
+                // Notify observers with tableModel
                 setChanged();
                 notifyObservers(tableModel);
+
+                // Notify observers with share code as title
+                setChanged();
+                notifyObservers(shareCode);
             } catch(SQLException e){
                 e.printStackTrace();
             }

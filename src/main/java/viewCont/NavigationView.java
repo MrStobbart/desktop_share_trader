@@ -66,7 +66,7 @@ public class NavigationView extends JFrame {
 		
 	      this.getContentPane().setLayout(null);
 	      this.setSize(new Dimension(940, 130));
-	      this.setTitle("Desktop share trader prototype");
+	      this.setTitle("Share trader navigation");
 	      this.addWindowListener(new CloseParent());
 	          
 

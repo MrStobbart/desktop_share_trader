@@ -84,10 +84,18 @@ public class TradesView implements Observer{
 
 	@Override
 	public void update(Observable observable, Object arg) {
-        initView((AbstractTableModel) arg);
+		if(arg instanceof String){
+		    setTitle("Share: " + arg);
+        }else{
+            initView((AbstractTableModel) arg);
+        }
 	}
 
-	public void setModel(ShareInformationModel shareInformationModel){
+    private void setTitle(String title) {
+	    frame.setTitle(title);
+    }
+
+    public void setModel(ShareInformationModel shareInformationModel){
 	    this.shareInformationModel = shareInformationModel;
     }
 }
