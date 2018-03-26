@@ -23,7 +23,8 @@ public class BrokersController extends Observable implements ActionListener {
 
         }else if(e.getActionCommand().equals(BrokersActions.RECOMMENDATIONS.name())){
             String recommendationField = brokersView.getRecommendationField();
-            brokersModel.sortTable(recommendationField);
+            System.out.println("Recommendation field: " + recommendationField);
+            brokersView.sortTable(recommendationField);
 
         }else if(e.getActionCommand().equals(BrokersActions.TRADE_RECORD.name())){
             int selectedRowId = brokersView.getSelectedRowIndex();

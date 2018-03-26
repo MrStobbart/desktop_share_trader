@@ -5,6 +5,8 @@ import model.ShareInformationModel;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -102,7 +104,19 @@ public class BrokersView implements Observer {
     }
 
     public String getRecommendationField(){
-	    return textAreaBrokerField.getText();
+	    String inputText = textAreaBrokerField.getText();
+	    textAreaBrokerField.setText("");
+	    return inputText;
+    }
+
+    public void sortTable(String searchCriteria){
+	    if(searchCriteria == null || searchCriteria.isEmpty()){
+	        searchCriteria = ".*";
+        }
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>((table.getModel()));
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+searchCriteria+"$",2));
+
+        table.setRowSorter(sorter);
     }
 
 
