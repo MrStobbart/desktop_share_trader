@@ -80,8 +80,6 @@ public class MainController implements Observer {
         brokersModel.addObserver(brokersView);
         brokersController.showView();
         brokersView.addListener(brokersController);
-        // TODO write this
-        System.out.println("Show brokers");
     }
 
     private void showAuthentication(){

@@ -100,9 +100,7 @@ public class BrokersView implements Observer {
             JOptionPane.showMessageDialog(null, "Please select a broker", "Error", JOptionPane.PLAIN_MESSAGE);
 	        return null;
         }
-	    System.out.println("Broker id " + table.getModel().getValueAt(selectedRow, 0));
 
-        // TODO get the broker id here as this is not working
 	    return (String) table.getModel().getValueAt(selectedRow, 0);
     }
 
