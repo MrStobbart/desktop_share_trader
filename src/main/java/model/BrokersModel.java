@@ -17,56 +17,61 @@ public class BrokersModel extends Observable{
 
     public void loadTable(){
 
-        if(true){
 
-            ResultSet resultSet;
-            int rowCount = 30;
-            String[] columnNames = {"Name", "Service Quality Grade", "Specialist Domain", "Mail", "Phone"};
-            dataGrid = new Object[rowCount][columnNames.length];
+        ResultSet resultSet;
+        int rowCount = 30;
+        String[] columnNames = {"Name", "Service Quality Grade", "Specialist Domain", "Mail", "Phone"};
+        dataGrid = new Object[rowCount][columnNames.length + 1];
 
-            dbConnector.connect();
+        resultSet = queryBrokersFromDatabase();
 
-            String sql = "SELECT * FROM BROKERS " +
-                         "ORDER BY SERVICE_QUALITY_GRADE desc";
-            resultSet = dbConnector.query(sql);
+        int row = 0;
+        int col = 0;
 
-            int row = 0;
-            int col = 0;
+        try{
+            while (resultSet.next() && row <= rowCount){
+                dataGrid[row][col] = resultSet.getString("ID");
+                col++;
 
-            try{
-                while (resultSet.next() && row <= rowCount){
-                    dataGrid[row][col] = resultSet.getString("NAME");
-                    col++;
+                dataGrid[row][col] = resultSet.getString("NAME");
+                col++;
 
-                    dataGrid[row][col] = resultSet.getString("SERVICE_QUALITY_GRADE");
-                    col++;
+                dataGrid[row][col] = resultSet.getString("SERVICE_QUALITY_GRADE");
+                col++;
 
-                    dataGrid[row][col] = resultSet.getString("SPECIALIST_DOMAIN");;
-                    col++;
+                dataGrid[row][col] = resultSet.getString("SPECIALIST_DOMAIN");
+                col++;
 
-                    dataGrid[row][col] = resultSet.getString("MAIL");;
-                    col++;
+                dataGrid[row][col] = resultSet.getString("MAIL");
+                col++;
 
-                    dataGrid[row][col] = resultSet.getString("PHONE");;
-                    col++;
+                dataGrid[row][col] = resultSet.getString("PHONE");
 
-                    col = 0;
-                    row++;
-                }
-
-
-                tableModel.setColumnNames(columnNames);
-                tableModel.setData(dataGrid);
-
-
-                setChanged();
-                notifyObservers(tableModel);
-            } catch(SQLException e){
-                e.printStackTrace();
+                col = 0;
+                row++;
             }
 
-            dbConnector.closeConnection();
+
+            tableModel.setColumnNames(columnNames);
+            tableModel.setData(dataGrid);
+
+
+            setChanged();
+            notifyObservers(tableModel);
+        } catch(SQLException e){
+            e.printStackTrace();
         }
+
+        dbConnector.closeConnection();
+    }
+
+    private ResultSet queryBrokersFromDatabase(){
+        dbConnector.connect();
+
+        String sql = "SELECT * FROM BROKERS " +
+                "ORDER BY SERVICE_QUALITY_GRADE desc";
+        return dbConnector.query(sql);
+
     }
 
 }

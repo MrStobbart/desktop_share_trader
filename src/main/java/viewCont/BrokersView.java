@@ -57,6 +57,7 @@ public class BrokersView implements Observer {
 	*/
 	public void initView(AbstractTableModel tableModel) {
 	    table = new JTable(tableModel);
+	    table.removeColumn(table.getColumnModel().getColumn(0));
         scrollPane = new JScrollPane(table);
 
         labelBrokerField.setBounds(20, 230, 350, 20);
@@ -92,15 +93,17 @@ public class BrokersView implements Observer {
         buttonRecommended.addActionListener(actionListener);
     }
 
-    public int getSelectedRowIndex(){
+    public String getSelectedBrokerId(){
 
 	    int selectedRow = table.getSelectedRow();
 	    if(selectedRow == -1){
-            JOptionPane.showMessageDialog(null, "Please select a share", "Error", JOptionPane.PLAIN_MESSAGE);
-	        return -1;
+            JOptionPane.showMessageDialog(null, "Please select a broker", "Error", JOptionPane.PLAIN_MESSAGE);
+	        return null;
         }
-	    System.out.println("selected Row" + selectedRow);
-	    return selectedRow;
+	    System.out.println("Broker id " + table.getModel().getValueAt(selectedRow, 0));
+
+        // TODO get the broker id here as this is not working
+	    return (String) table.getModel().getValueAt(selectedRow, 0);
     }
 
     /**

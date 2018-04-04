@@ -22,10 +22,7 @@ public class ShareInformationModel extends Observable{
         String[] columnNames = {"Share code", "Company", "Price", "Volume", "Company value"};
         Object[][] dataGrid = new Object[rowCount][columnNames.length];
 
-        dbConnector.connect();
-
-        String sql = "SELECT * FROM share_trader_local.SHARES  Order by COMPANY_NAME";
-        resultSet = dbConnector.query(sql);
+        resultSet = queryShareInformationFromDatabase();
 
         int row = 0;
         int col = 0;
@@ -65,6 +62,13 @@ public class ShareInformationModel extends Observable{
 
         dbConnector.closeConnection();
 
+    }
+
+    private ResultSet queryShareInformationFromDatabase() {
+        dbConnector.connect();
+
+        String sql = "SELECT * FROM share_trader_local.SHARES  Order by COMPANY_NAME";
+        return dbConnector.query(sql);
     }
 
     public void setShareAlert(String shareCode, int min, int max){

@@ -1,10 +1,7 @@
 package controller;
 
 import enums.MainActions;
-import model.AuthModel;
-import model.BrokersModel;
-import model.ShareInformationModel;
-import model.TradesModel;
+import model.*;
 import viewCont.*;
 
 import java.util.Observable;
@@ -23,9 +20,13 @@ public class MainController implements Observer {
     private ShareInformationModel shareInformationModel;
     private ShareInformationView shareInformationView;
 
-    private TradesController tradesController;
-    private TradesView tradesView;
-    private TradesModel tradesModel;
+    private ShareTradesController shareTradesController;
+    private ShareTradesModel shareTradesModel;
+    private TradesView shareTradesView;
+
+    private BrokerTradesController brokerTradesController;
+    private BrokerTradesModel brokerTradesModel;
+    private TradesView brokerTradesView;
 
     private BrokersController brokersController;
     private BrokersModel brokersModel;
@@ -49,9 +50,13 @@ public class MainController implements Observer {
                 hideViews();
                 showShareInformation();
                 break;
-            case SHOW_TRADES:
+            case SHOW_SHARE_TRADES:
                 hideViews();
-                showTrades();
+                showShareTrades();
+                break;
+            case SHOW_BROKER_TRADES:
+                hideViews();
+                showBrokerTrades();
                 break;
             case SHOW_BROKERS:
                 hideViews();
@@ -124,28 +129,51 @@ public class MainController implements Observer {
 
     }
 
-    private void showTrades(){
+    private void showShareTrades(){
 
-        tradesController = new TradesController();
-        tradesModel = new TradesModel();
-        tradesView = new TradesView();
+        shareTradesController = new ShareTradesController();
+        shareTradesModel = new ShareTradesModel();
+        shareTradesView = new TradesView();
 
-        tradesController.setModel(tradesModel);
-        tradesController.setView(tradesView);
-        tradesController.addObserver(this);
+        shareTradesController.setModel(shareTradesModel);
+        shareTradesController.setView(shareTradesView);
+        shareTradesController.addObserver(this);
 
-        tradesModel.addObserver(tradesView);
-        tradesView.addListener(tradesController);
+        shareTradesModel.addObserver(shareTradesView);
+        shareTradesView.addListener(shareTradesController);
 
         String shareCode = shareInformationView.getSelectedRowShareCode();
         if(shareCode != null){
-            tradesController.showView(shareCode);
+            shareTradesController.showView(shareCode);
         }else{
             // So that something
             showShareInformation();
         }
 
     }
+
+    private void showBrokerTrades() {
+
+        brokerTradesController = new BrokerTradesController();
+        brokerTradesModel = new BrokerTradesModel();
+        brokerTradesView = new TradesView();
+
+        brokerTradesController.setModel(brokerTradesModel);
+        brokerTradesController.setView(brokerTradesView);
+        brokerTradesController.addObserver(this);
+
+        brokerTradesModel.addObserver(brokerTradesView);
+        brokerTradesView.addListener(brokerTradesController);
+
+        String brokerId = brokersView.getSelectedBrokerId();
+        if(brokerId != null){
+            brokerTradesController.showView(brokerId);
+        }else{
+            // So that something
+            showShareInformation();
+        }
+    }
+
 
     private void hideViews(){
 
@@ -161,8 +189,8 @@ public class MainController implements Observer {
             shareInformationView.hideView();
         }
 
-        if(tradesView != null){
-            tradesView.hideView();
+        if(shareTradesView != null){
+            shareTradesView.hideView();
         }
 
         if(brokersView != null){

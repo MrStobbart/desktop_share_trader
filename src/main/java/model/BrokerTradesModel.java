@@ -4,37 +4,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
 
-public class TradesModel extends Observable{
+public class BrokerTradesModel extends Observable{
 
     DbConnector dbConnector;
     TableModel tableModel;
 
-    public TradesModel(){
+    public BrokerTradesModel(){
         dbConnector = new DbConnector();
         tableModel = new TableModel();
     }
 
-    public void loadTable(String shareCode){
 
-        if(shareCode != null){
+    public void loadTrades(String brokerId){
+
+        if(brokerId != null) {
 
             ResultSet resultSet;
             int rowCount = 30;
-            String[] columnNames = {"Buyer", "Seller", "Volume", "Price", "Total Price", "Date and time", "Broker"};
+            String[] columnNames = {"Share", "Buyer", "Seller", "Volume", "Price", "Total Price", "Date and time"};
             Object[][] dataGrid = new Object[rowCount][columnNames.length];
 
-            dbConnector.connect();
 
-            String sql = "SELECT t.BUYER, t.SELLER, t.VOLUME, t.PRICE, t.DATE_TIME, b.NAME FROM share_trader_local.TRADES t " +
-                         "LEFT JOIN BROKERS b on b.ID = t.BROKER_ID " +
-                         "WHERE SHARE_CODE=\"" + shareCode + "\"";
-            resultSet = dbConnector.query(sql);
+            resultSet = queryBrokerTradesFromDatabase(brokerId);
+
 
             int row = 0;
             int col = 0;
 
-            try{
-                while (resultSet.next() && row <= rowCount){
+            try {
+                while (resultSet.next() && row <= rowCount) {
+                    dataGrid[row][col] = resultSet.getString("SHARE_CODE");
+                    col++;
+
                     dataGrid[row][col] = resultSet.getString("BUYER");
                     col++;
 
@@ -53,9 +54,6 @@ public class TradesModel extends Observable{
                     col++;
 
                     dataGrid[row][col] = resultSet.getString("DATE_TIME");
-                    col++;
-
-                    dataGrid[row][col] = resultSet.getString("NAME");
 
                     col = 0;
                     row++;
@@ -70,14 +68,43 @@ public class TradesModel extends Observable{
                 setChanged();
                 notifyObservers(tableModel);
 
-                // Notify observers with share code as title
+                // Notify observers with broker name as title
                 setChanged();
-                notifyObservers(shareCode);
-            } catch(SQLException e){
+                notifyObservers(getBrokerNameFromId(brokerId));
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 
             dbConnector.closeConnection();
         }
+    }
+
+
+    private ResultSet queryBrokerTradesFromDatabase(String brokerId) {
+
+        dbConnector.connect();
+
+        String sql = "SELECT SHARE_CODE, BUYER, SELLER, VOLUME, PRICE, DATE_TIME FROM share_trader_local.TRADES " +
+                "WHERE BROKER_ID=" + brokerId;
+        return dbConnector.query(sql);
+    }
+
+    private String getBrokerNameFromId(String brokerId){
+
+        String name = brokerId;
+        dbConnector.connect();
+
+        String sql = "SELECT b.NAME FROM BROKERS b " +
+                "WHERE ID=" + brokerId;
+
+        ResultSet resultSet = dbConnector.query(sql);
+        try {
+            resultSet.next();
+            name =  resultSet.getString("NAME");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return name;
     }
 }

@@ -47,7 +47,7 @@ public class ShareInformationController extends Observable implements Observer, 
             notifyObservers(MainActions.SHOW_NAVIGATION);
         } else if(e.getActionCommand().equals(ShareInformationActions.TRADES.name())){
             setChanged();
-            notifyObservers(MainActions.SHOW_TRADES);
+            notifyObservers(MainActions.SHOW_SHARE_TRADES);
         }
     }
 }

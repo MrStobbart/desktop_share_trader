@@ -2,20 +2,20 @@ package controller;
 
 import enums.MainActions;
 import enums.TradesActions;
-import model.TradesModel;
+import model.BrokerTradesModel;
 import viewCont.TradesView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
-public class TradesController extends Observable implements ActionListener{
+public class BrokerTradesController extends Observable implements ActionListener{
 
-    private TradesModel tradesModel;
+    private BrokerTradesModel brokerTradesModel;
     private TradesView tradesView;
 
-    public TradesController(){
-        tradesModel = new TradesModel();
+    public BrokerTradesController(){
+        brokerTradesModel = new BrokerTradesModel();
         tradesView = new TradesView();
     }
 
@@ -24,20 +24,20 @@ public class TradesController extends Observable implements ActionListener{
 
         if(e.getActionCommand().equals(TradesActions.BACK.name())){
             setChanged();
-            notifyObservers(MainActions.SHOW_SHARE_INFORMATION);
+            notifyObservers(MainActions.SHOW_BROKERS);
         }
 
     }
 
-    public void setModel(TradesModel tradesModel){
-        this.tradesModel = tradesModel;
+    public void setModel(BrokerTradesModel brokerTradesModel){
+        this.brokerTradesModel = brokerTradesModel;
     }
 
     public void setView(TradesView tradesView){
         this.tradesView = tradesView;
     }
 
-    public void showView(String shareCode){
-        tradesModel.loadTable(shareCode);
+    public void showView(String brokerId){
+        brokerTradesModel.loadTrades(brokerId);
     }
 }
