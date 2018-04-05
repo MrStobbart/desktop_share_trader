@@ -71,21 +71,11 @@ public class TradesView implements Observer{
 	    buttonBack.addActionListener(actionListener);
     }
 
-    public String getSelectedRowShareCode(){
-
-	    int selectedRow = table.getSelectedRow();
-	    if(selectedRow == -1){
-            JOptionPane.showMessageDialog(null, "Please select a share", "Error", JOptionPane.PLAIN_MESSAGE);
-	        return null;
-        }
-	    return (String) table.getValueAt(selectedRow, 0);
-    }
-
 
 	@Override
 	public void update(Observable observable, Object arg) {
 		if(arg instanceof String){
-		    setTitle("Share: " + arg);
+		    setTitle((String)arg);
         }else{
             initView((AbstractTableModel) arg);
         }
