@@ -121,7 +121,7 @@ public class BrokersView implements Observer {
 	        filterCriteria = ".*";
         }
         TableRowSorter<TableModel> sorter = new TableRowSorter<>((table.getModel()));
-        sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+filterCriteria+"$",2));
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+filterCriteria+"$",3));
 
         table.setRowSorter(sorter);
     }
