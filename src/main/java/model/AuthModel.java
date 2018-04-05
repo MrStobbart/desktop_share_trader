@@ -1,5 +1,6 @@
 package model;
 
+import controller.MainController;
 import enums.AuthResults;
 
 import java.sql.ResultSet;
@@ -30,13 +31,13 @@ public class AuthModel extends Observable{
 
             // This returns true when data was returned from the db
             if(resultSet.isBeforeFirst()){
-                System.out.println("true");
+                resultSet.next();
+                int userId = resultSet.getInt("ID");
+                MainController.setUserId(userId);
 
                 setChanged();
                 notifyObservers(AuthResults.SUCCESSFUL);
             }else{
-                System.out.println("false");
-
                 setChanged();
                 notifyObservers(AuthResults.WRONG_CREDENTIALS);
             }

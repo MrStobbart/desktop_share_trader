@@ -9,6 +9,8 @@ import java.util.Observer;
 
 public class MainController implements Observer {
 
+    private static int userId;
+
     private AuthController authController;
     private AuthView authView;
     private AuthModel authModel;
@@ -92,6 +94,7 @@ public class MainController implements Observer {
                 System.exit(0);
 
         }
+
 
         // TODO check for monitored shares
     }
@@ -296,4 +299,13 @@ public class MainController implements Observer {
             shareholderTradesView.hideView();
         }
     }
+
+    public static int getUserId() {
+        return userId;
+    }
+
+    public static void setUserId(int userId) {
+        MainController.userId = userId;
+    }
+
 }

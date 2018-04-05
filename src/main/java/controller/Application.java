@@ -1,11 +1,10 @@
 package controller;
 
 public class Application{
+    public static String user = "test";
+
     public static void main (String[] args){
-
-
-//        NavigationView cl = new NavigationView("TheClient");
-//        cl.initView();
+        user = "toast";
 
         MainController mainController = new MainController();
     }

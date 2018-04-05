@@ -1,5 +1,8 @@
 package model;
 
+import controller.MainController;
+
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
@@ -75,9 +78,11 @@ public class ShareInformationModel extends Observable{
 
         if(!(shareCode == null)){
 
-            // TODO somehow get the userid here
+            int userId = MainController.getUserId();
             String sql = "INSERT INTO SHARE_ALERTS (SHARE_CODE, USER_ID, MIN, MAX)" +
-                         "VALUES (\"" + shareCode + "\", 1, " + min + ", " + max + ")";
+                         "VALUES (\"" + shareCode + "\", " + userId + ", " + min + ", " + max + ")";
+
+            JOptionPane.showMessageDialog(null, "Share alert set!", "Information", JOptionPane.PLAIN_MESSAGE);
 
             dbConnector.connect();
             dbConnector.update(sql);

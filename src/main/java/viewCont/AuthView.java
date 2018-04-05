@@ -52,7 +52,6 @@ public class AuthView implements Observer {
 
         if(args == AuthResults.USERNAME_NOT_FREE){
             JOptionPane.showMessageDialog(null, "Username not available", "Error", JOptionPane.ERROR_MESSAGE);
-
         }
 
     }
