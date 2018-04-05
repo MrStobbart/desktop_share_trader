@@ -22,7 +22,7 @@ public class ShareholdersController extends Observable implements ActionListener
             notifyObservers(MainActions.SHOW_NAVIGATION);
         } else if(e.getActionCommand().equals(ShareholderActions.SHAREHOLDER_TRADES.name())){
             setChanged();
-            notifyObservers(MainActions.SHOW_SHAREHOLDERS);
+            notifyObservers(MainActions.SHOW_SHAREHOLDER_TRADES);
         }
 
     }

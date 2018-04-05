@@ -40,6 +40,10 @@ public class MainController implements Observer {
     private ShareholdersModel shareholdersModel;
     private ShareholdersView shareholdersView;
 
+    private ShareholderTradesController shareholderTradesController;
+    private ShareholderTradesModel shareholderTradesModel;
+    private TableView shareholderTradesView;
+
 
     public MainController(){
 
@@ -78,6 +82,10 @@ public class MainController implements Observer {
             case SHOW_SHAREHOLDERS_OF_SHARE:
                 hideViews();
                 showShareholdersOfShare();
+                break;
+            case SHOW_SHAREHOLDER_TRADES:
+                hideViews();
+                showShareholdersTrades();
                 break;
             case EXIT_APPLICATION:
                 hideViews();
@@ -212,6 +220,27 @@ public class MainController implements Observer {
         }
     }
 
+    private void showShareholdersTrades() {
+
+        shareholderTradesController = new ShareholderTradesController();
+        shareholderTradesModel = new ShareholderTradesModel();
+        shareholderTradesView = new TableView();
+
+        shareholderTradesController.setModel(shareholderTradesModel);
+        shareholderTradesController.setView(shareholdersOfShareView);
+        shareholderTradesController.addObserver(this);
+
+        shareholderTradesModel.addObserver(shareholderTradesView);
+        shareholderTradesView.addListener(shareholderTradesController);
+
+        String shareholderId = shareholdersView.getSelectedShareholderId();
+        if(shareholderId != null){
+            shareholderTradesController.showView(shareholderId);
+        }else{
+            showShareholders();
+        }
+    }
+
     private void showShareholders() {
 
         shareholdersController = new ShareholdersController();
@@ -261,6 +290,10 @@ public class MainController implements Observer {
 
         if(shareholdersView != null){
             shareholdersView.hideView();
+        }
+
+        if(shareholderTradesView != null){
+            shareholderTradesView.hideView();
         }
     }
 }

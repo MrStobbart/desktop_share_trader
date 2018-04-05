@@ -52,6 +52,7 @@ public class ShareholdersView implements Observer{
 	*/
 	public void initView(AbstractTableModel tableModel) {
 	    table = new JTable(tableModel);
+        table.removeColumn(table.getColumnModel().getColumn(0));
         scrollPane = new JScrollPane(table);
 
         buttonShowTrades.setActionCommand(ShareholderActions.SHAREHOLDER_TRADES.name());
@@ -94,5 +95,16 @@ public class ShareholdersView implements Observer{
 
     public void setModel(ShareInformationModel shareInformationModel){
 	    this.shareInformationModel = shareInformationModel;
+    }
+
+    public String getSelectedShareholderId() {
+
+        int selectedRow = table.getSelectedRow();
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null, "Please select a broker", "Error", JOptionPane.PLAIN_MESSAGE);
+            return null;
+        }
+
+        return (String) table.getModel().getValueAt(selectedRow, 0);
     }
 }

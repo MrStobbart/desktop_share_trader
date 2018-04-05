@@ -20,7 +20,7 @@ public class ShareholdersModel extends Observable{
 
         ResultSet resultSet;
         int rowCount = 30;
-        String[] columnNames = {"Name"};
+        String[] columnNames = {"ID", "Name"};
         Object[][] dataGrid = new Object[rowCount][columnNames.length];
 
 
@@ -32,6 +32,9 @@ public class ShareholdersModel extends Observable{
 
         try {
             while (resultSet.next() && row <= rowCount) {
+                dataGrid[row][col] = resultSet.getString("ID");
+                col++;
+
                 dataGrid[row][col] = resultSet.getString("NAME");
 
                 col = 0;
