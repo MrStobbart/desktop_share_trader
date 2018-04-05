@@ -2,20 +2,20 @@ package controller;
 
 import enums.MainActions;
 import enums.TableViewActions;
-import model.ShareTradesModel;
+import model.ShareholdersOfShareModel;
 import viewCont.TableView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
-public class ShareTradesController extends Observable implements ActionListener{
+public class ShareholdersOfShareController extends Observable implements ActionListener{
 
-    private ShareTradesModel shareTradesModel;
+    private ShareholdersOfShareModel shareholdersOfShareModel;
     private TableView tableView;
 
-    public ShareTradesController(){
-        shareTradesModel = new ShareTradesModel();
+    public ShareholdersOfShareController(){
+        shareholdersOfShareModel = new ShareholdersOfShareModel();
         tableView = new TableView();
     }
 
@@ -29,15 +29,15 @@ public class ShareTradesController extends Observable implements ActionListener{
 
     }
 
-    public void setModel(ShareTradesModel shareTradesModel){
-        this.shareTradesModel = shareTradesModel;
+    public void setModel(ShareholdersOfShareModel shareholdersOfShareModel){
+        this.shareholdersOfShareModel = shareholdersOfShareModel;
     }
 
     public void setView(TableView tableView){
         this.tableView = tableView;
     }
 
-    public void showView(String shareCode){
-        shareTradesModel.loadTrades(shareCode);
+    public void showView(String brokerId){
+        shareholdersOfShareModel.loadShareholders(brokerId);
     }
 }

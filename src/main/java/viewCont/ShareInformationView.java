@@ -21,7 +21,8 @@ public class ShareInformationView implements Observer {
 
     private JButton buttonWatchShare = new JButton("Track selected share");
     private JButton buttonBack = new JButton("Back");
-    private JButton buttonTrades = new JButton("View Trades with this share");
+    private JButton buttonTrades = new JButton("View Trades of selected share");
+    private JButton buttonShareholders = new JButton("View shareholders of selected share");
     private JLabel labelMinPrice = new JLabel("Min share price for alert");
     private JLabel labelMaxPrice = new JLabel("Max share price for alert");
     private SpinnerModel minPriceModel = new SpinnerNumberModel(100,  0, 10000, 1);
@@ -76,7 +77,10 @@ public class ShareInformationView implements Observer {
         buttonBack.setBounds(new Rectangle(20, 270, 100, 40));
 
         buttonTrades.setActionCommand(ShareInformationActions.TRADES.name());
-        buttonTrades.setBounds(new Rectangle( 70, 320, 200, 40));
+        buttonTrades.setBounds(new Rectangle( 70, 320, 250, 40));
+
+        buttonShareholders.setActionCommand(ShareInformationActions.SHAREHOLDERS.name());
+        buttonShareholders.setBounds(new Rectangle(70, 370, 250, 40));
 
 		scrollPane.setBounds(new Rectangle(20,20,550,200));
 
@@ -87,9 +91,10 @@ public class ShareInformationView implements Observer {
         frame.getContentPane().add(buttonBack);
         frame.getContentPane().add(buttonWatchShare);
         frame.getContentPane().add(buttonTrades);
+        frame.getContentPane().add(buttonShareholders);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().setLayout(null);
-		frame.setSize(new Dimension(600, 400));
+		frame.setSize(new Dimension(600, 500));
 		frame.setTitle("Share Information");
 		frame.addWindowListener(new CloseChild(frame));
 		frame.setVisible(true);
@@ -99,6 +104,7 @@ public class ShareInformationView implements Observer {
 	    buttonWatchShare.addActionListener(actionListener);
 	    buttonBack.addActionListener(actionListener);
         buttonTrades.addActionListener(actionListener);
+        buttonShareholders.addActionListener(actionListener);
     }
 
     public String getSelectedRowShareCode(){

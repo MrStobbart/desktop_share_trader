@@ -16,30 +16,30 @@ public class NavigationController extends Observable implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event){
 
-        if(event.getActionCommand() == NavigationActions.SHARE_INFORMATION.name()){
+        if(event.getActionCommand().equals(NavigationActions.SHARE_INFORMATION.name())){
 
             setChanged();
             notifyObservers(MainActions.SHOW_SHARE_INFORMATION);
         }
 
-        if(event.getActionCommand() == NavigationActions.TRADES.name()){
+        if(event.getActionCommand().equals(NavigationActions.TRADES.name())){
 
             setChanged();
             notifyObservers(MainActions.SHOW_SHARE_TRADES);
         }
 
-        if(event.getActionCommand() == NavigationActions.BROKERS.name()){
+        if(event.getActionCommand().equals(NavigationActions.BROKERS.name())){
 
             setChanged();
             notifyObservers(MainActions.SHOW_BROKERS);
         }
 
-        if(event.getActionCommand() == NavigationActions.SHAREHOLDERS.name()){
+        if(event.getActionCommand().equals(NavigationActions.SHAREHOLDERS.name())){
             setChanged();
             notifyObservers(MainActions.SHOW_SHAREHOLDERS);
         }
 
-        if(event.getActionCommand() == NavigationActions.EXIT.name()){
+        if(event.getActionCommand().equals(NavigationActions.EXIT.name())){
             setChanged();
             notifyObservers(MainActions.EXIT_APPLICATION);
         }

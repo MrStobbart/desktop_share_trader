@@ -22,15 +22,19 @@ public class MainController implements Observer {
 
     private ShareTradesController shareTradesController;
     private ShareTradesModel shareTradesModel;
-    private TradesView shareTradesView;
+    private TableView shareTradesView;
 
     private BrokerTradesController brokerTradesController;
     private BrokerTradesModel brokerTradesModel;
-    private TradesView brokerTradesView;
+    private TableView brokerTradesView;
 
     private BrokersController brokersController;
     private BrokersModel brokersModel;
     private BrokersView brokersView;
+
+    private ShareholdersOfShareController shareholdersOfShareController;
+    private ShareholdersOfShareModel shareholdersOfShareModel;
+    private TableView shareholdersOfShareView;
 
     public MainController(){
 
@@ -39,9 +43,9 @@ public class MainController implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object args){
+    public void update(Observable observable, Object args) {
 
-        switch ((MainActions)args){
+        switch ((MainActions) args) {
             case SHOW_NAVIGATION:
                 hideViews();
                 showNavigation();
@@ -65,6 +69,10 @@ public class MainController implements Observer {
             case SHOW_SHAREHOLDERS:
                 hideViews();
                 showShareholders();
+                break;
+            case SHOW_SHAREHOLDERS_OF_SHARE:
+                hideViews();
+                showShareholdersOfShare();
                 break;
             case EXIT_APPLICATION:
                 hideViews();
@@ -139,7 +147,7 @@ public class MainController implements Observer {
 
         shareTradesController = new ShareTradesController();
         shareTradesModel = new ShareTradesModel();
-        shareTradesView = new TradesView();
+        shareTradesView = new TableView();
 
         shareTradesController.setModel(shareTradesModel);
         shareTradesController.setView(shareTradesView);
@@ -158,11 +166,33 @@ public class MainController implements Observer {
 
     }
 
+    private void showShareholdersOfShare() {
+        shareholdersOfShareController = new ShareholdersOfShareController();
+        shareholdersOfShareModel= new ShareholdersOfShareModel();
+        shareholdersOfShareView= new TableView();
+
+        shareholdersOfShareController.setModel(shareholdersOfShareModel);
+        shareholdersOfShareController.setView(shareholdersOfShareView);
+        shareholdersOfShareController.addObserver(this);
+
+        shareholdersOfShareModel.addObserver(shareholdersOfShareView);
+        shareholdersOfShareView.addListener(shareholdersOfShareController);
+
+        String shareCode = shareInformationView.getSelectedRowShareCode();
+        if(shareCode != null){
+            shareholdersOfShareController.showView(shareCode);
+        }else{
+            // So that something
+            showShareInformation();
+        }
+
+    }
+
     private void showBrokerTrades() {
 
         brokerTradesController = new BrokerTradesController();
         brokerTradesModel = new BrokerTradesModel();
-        brokerTradesView = new TradesView();
+        brokerTradesView = new TableView();
 
         brokerTradesController.setModel(brokerTradesModel);
         brokerTradesController.setView(brokerTradesView);
@@ -209,6 +239,10 @@ public class MainController implements Observer {
 
         if(brokerTradesView != null){
             brokerTradesView.hideView();
+        }
+
+        if(shareholdersOfShareView != null){
+            shareholdersOfShareView.hideView();
         }
     }
 }

@@ -1,9 +1,9 @@
 package controller;
 
 import enums.MainActions;
-import enums.TradesActions;
+import enums.TableViewActions;
 import model.BrokerTradesModel;
-import viewCont.TradesView;
+import viewCont.TableView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,17 +12,17 @@ import java.util.Observable;
 public class BrokerTradesController extends Observable implements ActionListener{
 
     private BrokerTradesModel brokerTradesModel;
-    private TradesView tradesView;
+    private TableView tableView;
 
     public BrokerTradesController(){
         brokerTradesModel = new BrokerTradesModel();
-        tradesView = new TradesView();
+        tableView = new TableView();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getActionCommand().equals(TradesActions.BACK.name())){
+        if(e.getActionCommand().equals(TableViewActions.BACK.name())){
             setChanged();
             notifyObservers(MainActions.SHOW_BROKERS);
         }
@@ -33,8 +33,8 @@ public class BrokerTradesController extends Observable implements ActionListener
         this.brokerTradesModel = brokerTradesModel;
     }
 
-    public void setView(TradesView tradesView){
-        this.tradesView = tradesView;
+    public void setView(TableView tableView){
+        this.tableView = tableView;
     }
 
     public void showView(String brokerId){

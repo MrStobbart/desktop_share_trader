@@ -1,6 +1,6 @@
 package viewCont;
 
-import enums.ShareInformationActions;
+import enums.TableViewActions;
 import model.ShareInformationModel;
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ import java.util.Observer;
  *  Description:   This class handles the financial element of the NavigationView.
  *   
  */		
-public class TradesView implements Observer{
+public class TableView implements Observer{
 
     private JButton buttonBack = new JButton("Back");
 
@@ -53,7 +53,7 @@ public class TradesView implements Observer{
 	    table = new JTable(tableModel);
         scrollPane = new JScrollPane(table);
 
-        buttonBack.setActionCommand(ShareInformationActions.BACK.name());
+        buttonBack.setActionCommand(TableViewActions.BACK.name());
         buttonBack.setBounds(new Rectangle(20, 230, 100, 40));
 
 		scrollPane.setBounds(new Rectangle(20,20,550,200));
