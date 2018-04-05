@@ -69,7 +69,7 @@ public class ShareTradesModel extends Observable{
 
                 // Notify observers with share code as title
                 setChanged();
-                notifyObservers(shareCode);
+                notifyObservers("Share: " + shareCode);
             } catch(SQLException e){
                 e.printStackTrace();
             }
@@ -83,8 +83,11 @@ public class ShareTradesModel extends Observable{
 
         dbConnector.connect();
 
-        String sql = "SELECT t.BUYER, t.SELLER, t.VOLUME, t.PRICE, t.DATE_TIME, b.NAME FROM share_trader_local.TRADES t " +
+
+        String sql = "SELECT s_buyer.NAME as BUYER, s_seller.NAME as SELLER, t.VOLUME, t.PRICE, t.DATE_TIME, b.NAME FROM share_trader_local.TRADES t " +
                 "LEFT JOIN BROKERS b on b.ID = t.BROKER_ID " +
+                "LEFT JOIN SHAREHOLDERS s_buyer on s_buyer.ID = t.BUYER " +
+                "LEFT JOIN SHAREHOLDERS s_seller on s_seller.ID = t.SELLER " +
                 "WHERE SHARE_CODE=\"" + shareCode + "\"";
         return dbConnector.query(sql);
     }
