@@ -14,11 +14,6 @@ public class ShareTradesController extends Observable implements ActionListener{
     private ShareTradesModel shareTradesModel;
     private TableView tableView;
 
-    public ShareTradesController(){
-        shareTradesModel = new ShareTradesModel();
-        tableView = new TableView();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

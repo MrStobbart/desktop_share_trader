@@ -36,6 +36,11 @@ public class MainController implements Observer {
     private ShareholdersOfShareModel shareholdersOfShareModel;
     private TableView shareholdersOfShareView;
 
+    private ShareholdersController shareholdersController;
+    private ShareholdersModel shareholdersModel;
+    private ShareholdersView shareholdersView;
+
+
     public MainController(){
 
         showAuthentication();
@@ -160,7 +165,6 @@ public class MainController implements Observer {
         if(shareCode != null){
             shareTradesController.showView(shareCode);
         }else{
-            // So that something
             showShareInformation();
         }
 
@@ -182,7 +186,6 @@ public class MainController implements Observer {
         if(shareCode != null){
             shareholdersOfShareController.showView(shareCode);
         }else{
-            // So that something
             showShareInformation();
         }
 
@@ -205,13 +208,24 @@ public class MainController implements Observer {
         if(brokerId != null){
             brokerTradesController.showView(brokerId);
         }else{
-            // So that something
             showBrokers();
         }
     }
 
     private void showShareholders() {
-        System.out.println("Show shareholders");
+
+        shareholdersController = new ShareholdersController();
+        shareholdersModel = new ShareholdersModel();
+        shareholdersView = new ShareholdersView();
+
+        shareholdersController.setModel(shareholdersModel);
+        shareholdersController.setView(shareholdersView);
+        shareholdersController.addObserver(this);
+
+        shareholdersModel.addObserver(shareholdersView);
+        shareholdersView.addListener(shareholdersController);
+
+        shareholdersController.showView();
     }
 
 
@@ -243,6 +257,10 @@ public class MainController implements Observer {
 
         if(shareholdersOfShareView != null){
             shareholdersOfShareView.hideView();
+        }
+
+        if(shareholdersView != null){
+            shareholdersView.hideView();
         }
     }
 }

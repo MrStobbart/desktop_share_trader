@@ -14,11 +14,6 @@ public class ShareholdersOfShareController extends Observable implements ActionL
     private ShareholdersOfShareModel shareholdersOfShareModel;
     private TableView tableView;
 
-    public ShareholdersOfShareController(){
-        shareholdersOfShareModel = new ShareholdersOfShareModel();
-        tableView = new TableView();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

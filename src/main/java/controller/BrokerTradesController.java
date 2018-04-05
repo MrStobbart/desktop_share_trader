@@ -14,11 +14,6 @@ public class BrokerTradesController extends Observable implements ActionListener
     private BrokerTradesModel brokerTradesModel;
     private TableView tableView;
 
-    public BrokerTradesController(){
-        brokerTradesModel = new BrokerTradesModel();
-        tableView = new TableView();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
