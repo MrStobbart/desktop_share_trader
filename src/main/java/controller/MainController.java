@@ -176,7 +176,7 @@ public class MainController implements Observer {
             brokerTradesController.showView(brokerId);
         }else{
             // So that something
-            showShareInformation();
+            showBrokers();
         }
     }
 

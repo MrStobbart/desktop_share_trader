@@ -20,7 +20,7 @@ public class BrokersModel extends Observable{
 
         ResultSet resultSet;
         int rowCount = 30;
-        String[] columnNames = {"Name", "Service Quality Grade", "Specialist Domain", "Mail", "Phone"};
+        String[] columnNames = {"Id", "Name", "Service Quality Grade", "Specialist Domain", "Mail", "Phone"};
         dataGrid = new Object[rowCount][columnNames.length + 1];
 
         resultSet = queryBrokersFromDatabase();
