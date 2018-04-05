@@ -4,7 +4,6 @@ import util.StaticMethods;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
@@ -19,11 +18,10 @@ public class NavigationView extends JFrame {
 	private DelivController delc;
 	private ReportsController rc;
 	private JButton buttonShareInformation = new JButton("Share information");
-	private JButton buttonTrades = new JButton("Trades");
+	private JButton buttonTrades = new JButton("Trades (not active yet)");
 	private JButton buttonBrokers = new JButton("Brokers");
-	private JButton b4 = new JButton("Finacial Approval");
-	private JButton b5 = new JButton("Reports & Analysis");
-	private JButton b6 = new JButton("Exit");
+	private JButton buttonShareholders = new JButton("Shareholders");
+	private JButton buttonExit = new JButton("Exit");
 
     /**
      *  Method:         NavigationView (constructor)
@@ -80,14 +78,14 @@ public class NavigationView extends JFrame {
 	      buttonBrokers.setBounds(new Rectangle(320, 20, 150, 50));
 	      this.getContentPane().add(buttonBrokers);
 	      
-	      b4.setBounds(new Rectangle(470, 20, 150, 50));
-	      this.getContentPane().add(b4);
+	      buttonShareholders.setBounds(new Rectangle(470, 20, 150, 50));
+	      this.getContentPane().add(buttonShareholders);
 	      
-	      b5.setBounds(new Rectangle(620, 20, 150, 50));
-	      this.getContentPane().add(b5);
-	      
-	      b6.setBounds(new Rectangle(770, 20, 150, 50));
-	      this.getContentPane().add(b6);
+	      buttonExit.setBounds(new Rectangle(620, 20, 150, 50));
+	      this.getContentPane().add(buttonExit);
+
+	      // TODO remove this
+//	      b6.setBounds(new Rectangle(770, 20, 150, 50));
 	}
 
 	public void addListener(ActionListener actionListener){
@@ -101,29 +99,12 @@ public class NavigationView extends JFrame {
         buttonBrokers.setActionCommand(NavigationActions.BROKERS.name());
         buttonBrokers.addActionListener(actionListener);
 
-        b4.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                finControl();
-            }
-        });
+        buttonShareholders.setActionCommand(NavigationActions.SHAREHOLDERS.name());
+        buttonShareholders.addActionListener(actionListener);
 
-        b5.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                reportsControl();
-            }
-        });
+        buttonExit.setActionCommand(NavigationActions.EXIT.name());
+        buttonExit.addActionListener(actionListener);
 
-        b6.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                System.exit(0);
-            }
-        });
     }
 
     /**

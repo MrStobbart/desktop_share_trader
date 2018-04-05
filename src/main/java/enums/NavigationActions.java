@@ -1,3 +1,3 @@
 package enums;
 
-public enum NavigationActions {SHARE_INFORMATION, TRADES, BROKERS}
+public enum NavigationActions {SHARE_INFORMATION, TRADES, BROKERS, SHAREHOLDERS, EXIT}

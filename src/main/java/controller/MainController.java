@@ -62,11 +62,19 @@ public class MainController implements Observer {
                 hideViews();
                 showBrokers();
                 break;
+            case SHOW_SHAREHOLDERS:
+                hideViews();
+                showShareholders();
+                break;
+            case EXIT_APPLICATION:
+                hideViews();
+                System.exit(0);
 
         }
 
         // TODO check for monitored shares
     }
+
 
     private void showBrokers() {
         brokersController = new BrokersController();
@@ -172,6 +180,10 @@ public class MainController implements Observer {
         }
     }
 
+    private void showShareholders() {
+        System.out.println("Show shareholders");
+    }
+
 
     private void hideViews(){
 
@@ -193,6 +205,10 @@ public class MainController implements Observer {
 
         if(brokersView != null){
             brokersView.hideView();
+        }
+
+        if(brokerTradesView != null){
+            brokerTradesView.hideView();
         }
     }
 }
