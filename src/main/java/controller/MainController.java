@@ -9,7 +9,7 @@ import java.util.Observer;
 
 public class MainController implements Observer {
 
-    private static int userId;
+    private static int userId = 0;
 
     private AuthController authController;
     private AuthView authView;
@@ -45,6 +45,8 @@ public class MainController implements Observer {
     private ShareholderTradesController shareholderTradesController;
     private ShareholderTradesModel shareholderTradesModel;
     private TableView shareholderTradesView;
+
+    private AlertModel alertModel = new AlertModel();
 
 
     public MainController(){
@@ -95,10 +97,9 @@ public class MainController implements Observer {
 
         }
 
+        checkForShareMonitoringAlerts();
 
-        // TODO check for monitored shares
     }
-
 
     private void showBrokers() {
         brokersController = new BrokersController();
@@ -297,6 +298,14 @@ public class MainController implements Observer {
 
         if(shareholderTradesView != null){
             shareholderTradesView.hideView();
+        }
+    }
+
+    private void checkForShareMonitoringAlerts() {
+
+        System.out.println("Check alerts");
+        if(userId != 0){
+            alertModel.checkShareAlert(userId);
         }
     }
 
