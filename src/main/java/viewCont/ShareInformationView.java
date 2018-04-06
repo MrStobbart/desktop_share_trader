@@ -2,6 +2,7 @@ package viewCont;
 
 import enums.ShareInformationActions;
 import model.ShareInformationModel;
+import util.StaticMethods;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -97,7 +98,7 @@ public class ShareInformationView implements Observer {
 		frame.setSize(new Dimension(600, 500));
 		frame.setTitle("Share Information");
 		frame.addWindowListener(new CloseChild(frame));
-		frame.setVisible(true);
+        StaticMethods.positionAndShow(frame);
 	}
 
 	public void addListener(ActionListener actionListener){

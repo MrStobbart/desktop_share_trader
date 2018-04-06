@@ -2,6 +2,7 @@ package viewCont;
 
 import enums.ShareholderActions;
 import model.ShareInformationModel;
+import util.StaticMethods;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -70,7 +71,7 @@ public class ShareholdersView implements Observer{
 		frame.setSize(new Dimension(600, 400));
 		frame.setTitle("Trades Information");
 		frame.addWindowListener(new CloseChild(frame));
-		frame.setVisible(true);
+		StaticMethods.positionAndShow(frame);
 	}
 
 	public void addListener(ActionListener actionListener){
