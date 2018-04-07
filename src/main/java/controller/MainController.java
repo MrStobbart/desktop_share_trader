@@ -30,6 +30,10 @@ public class MainController implements Observer {
     private BrokerTradesModel brokerTradesModel;
     private TableView brokerTradesView;
 
+    private TradesController tradesController;
+    private TradesModel tradesModel;
+    private TableView tradesView;
+
     private BrokersController brokersController;
     private BrokersModel brokersModel;
     private BrokersView brokersView;
@@ -90,6 +94,10 @@ public class MainController implements Observer {
             case SHOW_SHAREHOLDER_TRADES:
                 hideViews();
                 showShareholdersTrades();
+                break;
+            case SHOW_TRADES:
+                hideViews();
+                showTrades();
                 break;
             case EXIT_APPLICATION:
                 hideViews();
@@ -179,6 +187,23 @@ public class MainController implements Observer {
         }else{
             showShareInformation();
         }
+
+    }
+
+    private void showTrades(){
+
+        tradesController = new TradesController();
+        tradesModel = new TradesModel();
+        tradesView = new TableView();
+
+        tradesController.setModel(tradesModel);
+        tradesController.setView(tradesView);
+        tradesController.addObserver(this);
+
+        tradesModel.addObserver(tradesView);
+        tradesView.addListener(tradesController);
+
+        tradesController.showView();
 
     }
 
@@ -298,6 +323,10 @@ public class MainController implements Observer {
 
         if(shareholderTradesView != null){
             shareholderTradesView.hideView();
+        }
+
+        if(tradesView != null){
+            tradesView.hideView();
         }
     }
 

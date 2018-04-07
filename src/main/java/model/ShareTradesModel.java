@@ -88,7 +88,8 @@ public class ShareTradesModel extends Observable{
                 "LEFT JOIN BROKERS b on b.ID = t.BROKER_ID " +
                 "LEFT JOIN SHAREHOLDERS s_buyer on s_buyer.ID = t.BUYER " +
                 "LEFT JOIN SHAREHOLDERS s_seller on s_seller.ID = t.SELLER " +
-                "WHERE SHARE_CODE=\"" + shareCode + "\"";
+                "WHERE SHARE_CODE=\"" + shareCode + "\" " +
+                "ORDER BY DATE_TIME desc";
         return dbConnector.query(sql);
     }
 

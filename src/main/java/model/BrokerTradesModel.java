@@ -87,7 +87,8 @@ public class BrokerTradesModel extends Observable{
         String sql = "SELECT t.SHARE_CODE, s_buyer.NAME as BUYER, s_seller.NAME as SELLER, t.VOLUME, t.PRICE, t.DATE_TIME FROM share_trader_local.TRADES t " +
                 "LEFT JOIN SHAREHOLDERS s_buyer on s_buyer.ID = t.BUYER " +
                 "LEFT JOIN SHAREHOLDERS s_seller on s_seller.ID = t.SELLER " +
-                "WHERE BROKER_ID=\"" + brokerId + "\"";
+                "WHERE BROKER_ID=\"" + brokerId + "\" " +
+                "ORDER BY DATE_TIME desc";
 
         return dbConnector.query(sql);
     }

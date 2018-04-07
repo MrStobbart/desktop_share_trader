@@ -18,7 +18,7 @@ public class NavigationView extends JFrame {
 	private DelivController delc;
 	private ReportsController rc;
 	private JButton buttonShareInformation = new JButton("Share information");
-	private JButton buttonTrades = new JButton("Trades (not active yet)");
+	private JButton buttonTrades = new JButton("Trades");
 	private JButton buttonBrokers = new JButton("Brokers");
 	private JButton buttonShareholders = new JButton("Shareholders");
 	private JButton buttonExit = new JButton("Exit");
