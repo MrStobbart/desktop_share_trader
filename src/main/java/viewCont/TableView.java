@@ -65,6 +65,7 @@ public class TableView implements Observer{
 		frame.setSize(new Dimension(800, 400));
 		frame.setTitle("Trades Information");
 		frame.addWindowListener(new CloseChild(frame));
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		StaticMethods.positionAndShow(frame);
 	}
 

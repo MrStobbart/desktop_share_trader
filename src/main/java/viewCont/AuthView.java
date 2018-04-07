@@ -26,8 +26,8 @@ public class AuthView implements Observer {
     public void showView(){
         frame = new JFrame("Authentication");
         frame.setContentPane(PanelAuthentication);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setSize(new Dimension(220, 170));
         StaticMethods.positionAndShow(frame);
     }
 

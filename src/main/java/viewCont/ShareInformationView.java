@@ -98,6 +98,7 @@ public class ShareInformationView implements Observer {
 		frame.setSize(new Dimension(800, 500));
 		frame.setTitle("Share Information");
 		frame.addWindowListener(new CloseChild(frame));
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         StaticMethods.positionAndShow(frame);
 	}
 

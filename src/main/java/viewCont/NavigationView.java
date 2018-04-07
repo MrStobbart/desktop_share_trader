@@ -66,6 +66,7 @@ public class NavigationView extends JFrame {
 	      this.setSize(new Dimension(790, 130));
 	      this.setTitle("Share trader navigation");
 	      this.addWindowListener(new CloseParent());
+	      this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	          
 
 	      
