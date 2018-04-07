@@ -73,7 +73,7 @@ public class BrokersView implements Observer {
         buttonRecommended.setActionCommand(BrokersActions.RECOMMENDATIONS.name());
         buttonRecommended.setBounds(new Rectangle( 70, 260, 350, 40));
 
-		scrollPane.setBounds(new Rectangle(20,20,550,200));
+		scrollPane.setBounds(new Rectangle(20,20,760,200));
 
         frame.getContentPane().add(labelBrokerField);
         frame.getContentPane().add(textAreaBrokerField);
@@ -82,7 +82,7 @@ public class BrokersView implements Observer {
         frame.getContentPane().add(buttonRecommended);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().setLayout(null);
-		frame.setSize(new Dimension(600, 400));
+		frame.setSize(new Dimension(800, 400));
 		frame.setTitle("Brokers information");
 		frame.addWindowListener(new CloseChild(frame));
 		StaticMethods.positionAndShow(frame);

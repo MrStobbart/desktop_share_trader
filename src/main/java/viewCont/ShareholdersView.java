@@ -62,13 +62,13 @@ public class ShareholdersView implements Observer{
         buttonBack.setActionCommand(ShareholderActions.BACK.name());
         buttonBack.setBounds(new Rectangle(20, 280, 100, 40));
 
-		scrollPane.setBounds(new Rectangle(20,20,550,200));
+		scrollPane.setBounds(new Rectangle(20,20,760,200));
 
         frame.getContentPane().add(buttonBack);
         frame.getContentPane().add(buttonShowTrades);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().setLayout(null);
-		frame.setSize(new Dimension(600, 400));
+		frame.setSize(new Dimension(800, 400));
 		frame.setTitle("Trades Information");
 		frame.addWindowListener(new CloseChild(frame));
 		StaticMethods.positionAndShow(frame);

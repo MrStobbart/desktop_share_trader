@@ -72,18 +72,18 @@ public class ShareInformationView implements Observer {
 
 
         buttonWatchShare.setActionCommand(ShareInformationActions.TRACK_SHARE.name());
-        buttonWatchShare.setBounds(new Rectangle(140, 270, 180, 40));
+        buttonWatchShare.setBounds(new Rectangle(140, 280, 180, 40));
 
         buttonBack.setActionCommand(ShareInformationActions.BACK.name());
-        buttonBack.setBounds(new Rectangle(20, 270, 100, 40));
+        buttonBack.setBounds(new Rectangle(20, 280, 100, 40));
 
         buttonTrades.setActionCommand(ShareInformationActions.TRADES.name());
-        buttonTrades.setBounds(new Rectangle( 70, 320, 250, 40));
+        buttonTrades.setBounds(new Rectangle( 70, 330, 250, 40));
 
         buttonShareholders.setActionCommand(ShareInformationActions.SHAREHOLDERS.name());
-        buttonShareholders.setBounds(new Rectangle(70, 370, 250, 40));
+        buttonShareholders.setBounds(new Rectangle(70, 380, 250, 40));
 
-		scrollPane.setBounds(new Rectangle(20,20,550,200));
+		scrollPane.setBounds(new Rectangle(20,20,760,200));
 
         frame.getContentPane().add(labelMinPrice);
         frame.getContentPane().add(spinnerMinPrice);
@@ -95,7 +95,7 @@ public class ShareInformationView implements Observer {
         frame.getContentPane().add(buttonShareholders);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().setLayout(null);
-		frame.setSize(new Dimension(600, 500));
+		frame.setSize(new Dimension(800, 500));
 		frame.setTitle("Share Information");
 		frame.addWindowListener(new CloseChild(frame));
         StaticMethods.positionAndShow(frame);
