@@ -332,7 +332,6 @@ public class MainController implements Observer {
 
     private void checkForShareMonitoringAlerts() {
 
-        System.out.println("Check alerts");
         if(userId != 0){
             alertModel.checkShareAlert(userId);
         }

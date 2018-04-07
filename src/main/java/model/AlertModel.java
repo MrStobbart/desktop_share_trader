@@ -106,8 +106,6 @@ public class AlertModel extends Observable{
 
         }
 
-        System.out.println("This is the sql statement: " + sql);
-
         dbConnector.connect();
         resultSet = dbConnector.query(sql.toString());
 
