@@ -12,11 +12,7 @@ import java.awt.event.ActionListener;
 ;
 
 public class NavigationView extends JFrame {
-	private PriceController pc;
 	private ShareInformationView fc;
-	private InvController invc;
-	private DelivController delc;
-	private ReportsController rc;
 	private JButton buttonShareInformation = new JButton("Share information");
 	private JButton buttonTrades = new JButton("Trades");
 	private JButton buttonBrokers = new JButton("Brokers");
@@ -30,11 +26,7 @@ public class NavigationView extends JFrame {
      *
      */
 	public NavigationView(){
-		pc = new PriceController();
 		fc = new ShareInformationView();
-		delc = new DelivController();
-		rc = new ReportsController();
-		invc = new InvController();
 	}
 	
 
@@ -108,28 +100,6 @@ public class NavigationView extends JFrame {
 
     }
 
-    /**
-     *  Method:         priceControl()
-     *
-     *  Description:    Starts the price Controller
-     *
-     */
-	public void priceControl()
-	{
-		pc.start();
-	}
-	
-	/**
-     *  Method:         invControl()
-     *
-     *  Description:    Starts the inventory Controller
-     *
-     */
-	public void invControl()
-	{
-		invc.start();
-	}
-	
 	/**
      *  Method:         finControl()
      *
@@ -141,25 +111,4 @@ public class NavigationView extends JFrame {
 		fc.start();
 	}
 
-	/**
-     *  Method:         delivControl()
-     *
-     *  Description:    Starts the Delivery Controller
-     *
-     */
-	public void delivControl()
-	{
-		delc.start();
-	}
-	
-	/**
-     *  Method:         reportsControl()
-     *
-     *  Description:    Starts the Reports Controller
-     *
-     */
-	public void reportsControl()
-	{
-		rc.start();
-	}
 }

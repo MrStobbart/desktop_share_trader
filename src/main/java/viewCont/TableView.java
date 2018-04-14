@@ -11,12 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-/** 
- *  Class:         ShareInformationView
- *
- *  Description:   This class handles the financial element of the NavigationView.
- *   
- */		
 public class TableView implements Observer{
 
     private JButton buttonBack = new JButton("Back");
@@ -27,29 +21,12 @@ public class TableView implements Observer{
 
 	private ShareInformationModel shareInformationModel;
 
-	/**
-	*  Method:         initView
-	*
-	*  Description:    Starts the process of setting the fiancial status of a customer
-	*  
-	*/		
-	public void start() {
-
-
-	}
 
 	public void hideView(){
 	    frame.setVisible(false);
     }
 	
 
-
-	/**
-	*  Method:         initView
-	*
-	*  Description:    Inititates the main GUI
-	*  
-	*/
 	public void initView(AbstractTableModel tableModel) {
 	    table = new JTable(tableModel);
         scrollPane = new JScrollPane(table);

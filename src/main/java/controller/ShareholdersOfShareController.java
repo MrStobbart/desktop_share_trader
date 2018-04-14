@@ -14,7 +14,7 @@ public class ShareholdersOfShareController extends Observable implements ActionL
     private ShareholdersOfShareModel shareholdersOfShareModel;
     private TableView tableView;
 
-    @Override
+        @Override
     public void actionPerformed(ActionEvent e) {
 
         if(e.getActionCommand().equals(TableViewActions.BACK.name())){

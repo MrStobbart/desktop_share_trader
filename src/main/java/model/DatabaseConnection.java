@@ -22,6 +22,12 @@ package model;
 		void connect();
 
 		/**
+		 * Method:			update
+		 * Description:		Executes an update statement on the previously created connection.
+		 */
+		void update(String sqlUpdate);
+
+		/**
 	     *  Method:         displayError
 	     *  Description:    displays all the error messages
 	     *  @param			e : The String representation of the error that was caught

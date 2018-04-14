@@ -28,31 +28,7 @@ public class StaticMethods
 
 //======================================================================
    
-   public static String checkIntInput(String input)
-   {
-      String warning = "";
-	   try
-      {
-         if (input.equals(""))
-        	 warning += "Please enter a value\n";
-         else
-            Double.valueOf(input);
-      }
-      catch (Exception e)
-      {
-    	  warning += "Please enter number format!\n";
-      }
-      return warning;
-   }
-   
-   public static boolean checkError(String toBeChecked)
-   {
-	   if (toBeChecked.equals(""))
-		   return true;
-	   else
-		   return false;
-   }
-      
+
    public static void alertMessage (String warning)
    {
       JOptionPane.showMessageDialog(null, warning, "There are errors", JOptionPane.ERROR_MESSAGE);	
